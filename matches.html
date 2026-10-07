@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Matches | PeerNex</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">PeerNex</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="request.html">Need Help</a>
+
+        <a href="offer.html">Offer Skill</a>
+
+    </nav>
+
+    <button class="login-btn">
+        AI Powered 🤖
+    </button>
+
+</header>
+
+
+
+<section class="matches-page">
+
+
+    <div class="section-title">
+
+        <p>PEERNEX AI MATCHING</p>
+
+        <h2>Best Matches For You 🤖</h2>
+
+        <p>
+            PeerNex finds students based on skills,
+            experience and service preferences.
+        </p>
+
+    </div>
+
+
+
+    <!-- REQUEST -->
+
+    <div class="request-summary">
+
+        <strong>Your Request</strong>
+
+        <p id="requestText">
+            🎨 I need someone to design a poster for my college event.
+        </p>
+
+        <span>🔄 Skill Exchange</span>
+
+        <span id="exchangeText">
+            💡 Your Exchange Skill: Web Development
+        </span>
+
+    </div>
+
+
+
+    <div class="match-list">
+
+
+
+        <!-- YOUR PROFILE -->
+
+        <div class="match-card">
+
+            <div class="match-top">
+
+                <div class="student-avatar">
+                    S
+                </div>
+
+
+                <div class="student-info">
+
+                    <h3>
+                        AM Sushree Swagatika Sahu
+                    </h3>
+
+                    <p>
+                        💻 Student • Web Development & Creative Skills
+                    </p>
+
+                    <div class="rating">
+                        ⭐ New Member | SYNORA Team
+                    </div>
+
+                </div>
+
+
+                <div class="match-score">
+
+                    <strong>
+                        97%
+                    </strong>
+
+                    <small>
+                        Match
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skills">
+
+                <span>
+                    Web Development
+                </span>
+
+                <span>
+                    Creative Ideas
+                </span>
+
+                <span>
+                    Presentation
+                </span>
+
+                <span>
+                    Teamwork
+                </span>
+
+            </div>
+
+
+
+            <div class="match-reason">
+
+                <strong>
+                    🧠 Why this is a good match
+                </strong>
+
+                <p>
+                    ✓ Can offer Web Development in exchange<br>
+                    ✓ Interested in technology and creative projects<br>
+                    ✓ Open to SkillSwap collaborations<br>
+                    ✓ Suitable for student projects
+                </p>
+
+            </div>
+
+
+
+            <div class="service-options">
+
+                <span>
+                    🔄 Can Exchange: Web Development
+                </span>
+
+                <span>
+                    💡 Wants: Graphic Design
+                </span>
+
+                <span>
+                    🏆 Experience Mode
+                </span>
+
+            </div>
+
+
+
+            <div class="match-buttons">
+
+                <button onclick="viewProfile('AM Sushree Swagatika Sahu')">
+                    📁 View Profile
+                </button>
+
+                <button onclick="connectStudent('AM Sushree Swagatika Sahu')">
+                    🔄 Request SkillSwap
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ANANYA -->
+
+        <div class="match-card">
+
+            <div class="match-top">
+
+                <div class="student-avatar">
+                    A
+                </div>
+
+
+                <div class="student-info">
+
+                    <h3>
+                        Ananya Sharma
+                    </h3>
+
+                    <p>
+                        🎨 Graphic Designer
+                    </p>
+
+                    <div class="rating">
+                        ⭐ 4.9 | 12 completed tasks
+                    </div>
+
+                </div>
+
+
+                <div class="match-score">
+
+                    <strong>
+                        96%
+                    </strong>
+
+                    <small>
+                        Match
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skills">
+
+                <span>Graphic Design</span>
+                <span>Canva</span>
+                <span>Posters</span>
+                <span>Social Media</span>
+
+            </div>
+
+
+
+            <div class="match-reason">
+
+                <strong>
+                    🧠 Why this is a good match
+                </strong>
+
+                <p>
+                    ✓ Strong poster design skills<br>
+                    ✓ Portfolio matches your requirement<br>
+                    ✓ Available before your deadline<br>
+                    ✓ Offers SkillSwap
+                </p>
+
+            </div>
+
+
+
+            <div class="service-options">
+
+                <span>
+                    🔄 Can Exchange: Graphic Design
+                </span>
+
+                <span>
+                    💡 Wants: Web Development
+                </span>
+
+                <span>
+                    🏆 Experience Mode
+                </span>
+
+            </div>
+
+
+
+            <div class="match-buttons">
+
+                <button onclick="viewProfile('Ananya Sharma')">
+                    📁 View Portfolio
+                </button>
+
+                <button onclick="connectStudent('Ananya Sharma')">
+                    🤝 Request SkillSwap
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RAHUL -->
+
+        <div class="match-card">
+
+            <div class="match-top">
+
+                <div class="student-avatar">
+                    R
+                </div>
+
+
+                <div class="student-info">
+
+                    <h3>
+                        Rahul Verma
+                    </h3>
+
+                    <p>
+                        🎨 UI / Graphic Designer
+                    </p>
+
+                    <div class="rating">
+                        ⭐ 4.7 | 8 completed tasks
+                    </div>
+
+                </div>
+
+
+                <div class="match-score">
+
+                    <strong>
+                        91%
+                    </strong>
+
+                    <small>
+                        Match
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skills">
+
+                <span>Graphic Design</span>
+                <span>Figma</span>
+                <span>Photoshop</span>
+                <span>UI Design</span>
+
+            </div>
+
+
+
+            <div class="match-reason">
+
+                <strong>
+                    🧠 Why this is a good match
+                </strong>
+
+                <p>
+                    ✓ Experienced in visual design<br>
+                    ✓ Good portfolio quality<br>
+                    ✓ Student-friendly pricing<br>
+                    ✓ Available this week
+                </p>
+
+            </div>
+
+
+
+            <div class="service-options">
+
+                <span>
+                    🔄 Can Exchange: UI Design
+                </span>
+
+                <span>
+                    💡 Wants: Web Development
+                </span>
+
+            </div>
+
+
+
+            <div class="match-buttons">
+
+                <button onclick="viewProfile('Rahul Verma')">
+                    📁 View Portfolio
+                </button>
+
+                <button onclick="connectStudent('Rahul Verma')">
+                    🤝 Request SkillSwap
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PRIYA -->
+
+        <div class="match-card">
+
+            <div class="match-top">
+
+                <div class="student-avatar">
+                    P
+                </div>
+
+
+                <div class="student-info">
+
+                    <h3>
+                        Priya Das
+                    </h3>
+
+                    <p>
+                        🎨 Creative Designer
+                    </p>
+
+                    <div class="rating">
+                        ⭐ 4.8 | 15 completed tasks
+                    </div>
+
+                </div>
+
+
+                <div class="match-score">
+
+                    <strong>
+                        87%
+                    </strong>
+
+                    <small>
+                        Match
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="skills">
+
+                <span>Canva</span>
+                <span>Illustration</span>
+                <span>Posters</span>
+                <span>Content Design</span>
+
+            </div>
+
+
+
+            <div class="match-reason">
+
+                <strong>
+                    🧠 Why this is a good match
+                </strong>
+
+                <p>
+                    ✓ Matches your poster requirement<br>
+                    ✓ Strong creative portfolio<br>
+                    ✓ Offers free Experience Mode<br>
+                    ✓ High student rating
+                </p>
+
+            </div>
+
+
+
+            <div class="service-options">
+
+                <span>
+                    🔄 Can Exchange: Canva & Illustration
+                </span>
+
+                <span>
+                    💡 Wants: Web Development
+                </span>
+
+            </div>
+
+
+
+            <div class="match-buttons">
+
+                <button onclick="viewProfile('Priya Das')">
+                    📁 View Portfolio
+                </button>
+
+                <button onclick="connectStudent('Priya Das')">
+                    🤝 Request SkillSwap
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <div>
+
+        <strong>
+            PeerNex
+        </strong>
+
+        <p>
+            Learn. Share. Earn. Grow — Together.
+        </p>
+
+    </div>
+
+
+    <p>
+        Built by <strong>SYNORA</strong> 💙
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+function connectStudent(name) {
+
+    alert(
+        "🤝 SkillSwap request sent to " +
+        name +
+        "!"
+    );
+
+}
+
+
+function viewProfile(name) {
+
+    alert(
+        "📁 Opening " +
+        name +
+        "'s profile..."
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

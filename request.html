@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Need Help | PeerNex</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">PeerNex</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="request.html">Need Help</a>
+
+        <a href="offer.html">Offer Skill</a>
+
+    </nav>
+
+    <button class="login-btn">
+        PeerSafe 🛡️
+    </button>
+
+</header>
+
+
+
+<section class="request-page">
+
+
+    <div class="section-title">
+
+        <p>NEED HELP?</p>
+
+        <h2>Tell us what you need.</h2>
+
+        <p>
+            PeerNex will help you find a suitable student
+            who can help with your task.
+        </p>
+
+    </div>
+
+
+
+    <div class="request-form">
+
+
+        <label>What do you need help with?</label>
+
+        <input
+            type="text"
+            id="skillNeeded"
+            placeholder="Example: I need help designing a poster"
+        >
+
+
+
+        <label>Describe your requirement</label>
+
+        <textarea
+            id="description"
+            rows="5"
+            placeholder="Explain what you need..."
+        ></textarea>
+
+
+
+        <label>When do you need it?</label>
+
+        <input
+            type="date"
+            id="deadline"
+        >
+
+
+
+        <label>How would you like to work?</label>
+
+        <select
+            id="mode"
+            onchange="showExchangeSkill()"
+        >
+
+            <option value="free">
+                🆓 Free / Experience
+            </option>
+
+            <option value="exchange">
+                🔄 Skill Exchange
+            </option>
+
+            <option value="paid">
+                💰 Student-Friendly Paid
+            </option>
+
+        </select>
+
+
+
+        <!-- SKILL EXCHANGE SECTION -->
+
+        <div
+            id="exchangeSkillBox"
+            style="display: none;"
+        >
+
+            <label>
+                What skill can you offer in exchange?
+            </label>
+
+            <input
+                type="text"
+                id="exchangeSkill"
+                placeholder="Example: Web Development, Canva, Video Editing"
+            >
+
+            <p style="
+                margin-top: 8px;
+                color: #6b7280;
+                font-size: 14px;
+            ">
+                💡 Tell us what skill you can give to another student.
+            </p>
+
+        </div>
+
+
+
+        <label>Budget (optional)</label>
+
+        <input
+            type="number"
+            id="budget"
+            placeholder="Example: 300"
+        >
+
+
+
+        <button
+            class="find-match-btn"
+            onclick="findMyMatch()"
+        >
+            🤖 Find My Match
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <div>
+
+        <strong>PeerNex</strong>
+
+        <p>
+            Learn. Share. Earn. Grow — Together.
+        </p>
+
+    </div>
+
+    <p>
+        Built by <strong>SYNORA</strong> 💙
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+function showExchangeSkill() {
+
+    const mode =
+        document.getElementById("mode").value;
+
+    const box =
+        document.getElementById("exchangeSkillBox");
+
+
+    if (mode === "exchange") {
+
+        box.style.display = "block";
+
+    }
+
+    else {
+
+        box.style.display = "none";
+
+    }
+
+}
+
+
+
+function findMyMatch() {
+
+    const skill =
+        document.getElementById("skillNeeded").value;
+
+
+    if (skill.trim() === "") {
+
+        alert(
+            "Please tell us what skill or help you need."
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+    "matches.html?need=" +
+    encodeURIComponent(skill) +
+    "&exchange=" +
+    encodeURIComponent(document.getElementById("exchangeSkill").value);
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

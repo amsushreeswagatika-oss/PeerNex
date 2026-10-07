@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Offer Your Skill | PeerNex</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">PeerNex</div>
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="request.html">Need Help</a>
+
+        <a href="offer.html">Offer Skill</a>
+
+    </nav>
+
+    <button class="login-btn">
+        PeerSafe 🛡️
+    </button>
+
+</header>
+
+
+
+<section class="request-page">
+
+
+    <div class="section-title">
+
+        <p>SHARE YOUR SKILL</p>
+
+        <h2>What can you offer?</h2>
+
+        <p>
+            Share your skills with other students,
+            gain experience, build your portfolio or earn.
+        </p>
+
+    </div>
+
+
+
+    <div class="request-form">
+
+
+        <label>Your Name</label>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Example: Ananya Sharma"
+        >
+
+
+
+        <label>What skill do you offer?</label>
+
+        <input
+            type="text"
+            id="skill"
+            placeholder="Example: Web Development"
+        >
+
+
+
+        <!-- SKILL YOU WANT IN RETURN -->
+
+        <label>
+            What skill do you want in return?
+        </label>
+
+        <input
+            type="text"
+            id="wantedSkill"
+            placeholder="Example: Graphic Design"
+        >
+
+        <p style="
+            margin-top: 8px;
+            color: #6b7280;
+            font-size: 14px;
+        ">
+            🔄 Example: You offer Web Development and want
+            Graphic Design in return.
+        </p>
+
+
+
+        <label>Tell students about your skill</label>
+
+        <textarea
+            id="skillDescription"
+            rows="5"
+            placeholder="Example: I can build websites, landing pages and simple web apps."
+        ></textarea>
+
+
+
+        <label>Your experience level</label>
+
+        <select id="experience">
+
+            <option>Beginner</option>
+
+            <option>Intermediate</option>
+
+            <option>Advanced</option>
+
+            <option>Professional</option>
+
+        </select>
+
+
+
+        <label>How do you want to offer your skill?</label>
+
+        <select
+            id="serviceMode"
+            onchange="showPrice()"
+        >
+
+            <option value="experience">
+                🏆 Experience Mode — Free
+            </option>
+
+            <option value="exchange">
+                🔄 SkillSwap — Exchange Skills
+            </option>
+
+            <option value="paid">
+                💰 Student-Friendly Paid
+            </option>
+
+        </select>
+
+
+
+        <div
+            id="priceBox"
+            style="display: none;"
+        >
+
+            <label>Price (if paid)</label>
+
+            <input
+                type="number"
+                id="price"
+                placeholder="Example: 200"
+            >
+
+        </div>
+
+
+
+        <label>Portfolio / Work Sample</label>
+
+        <input
+            type="file"
+            id="portfolio"
+            accept="image/*,.pdf"
+        >
+
+
+
+        <button
+            class="find-match-btn"
+            onclick="createProfile()"
+        >
+            🚀 Create My Skill Profile
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <div>
+
+        <strong>PeerNex</strong>
+
+        <p>
+            Learn. Share. Earn. Grow — Together.
+        </p>
+
+    </div>
+
+
+    <p>
+        Built by <strong>SYNORA</strong> 💙
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+function showPrice() {
+
+    const mode =
+        document.getElementById("serviceMode").value;
+
+    const priceBox =
+        document.getElementById("priceBox");
+
+
+    if (mode === "paid") {
+
+        priceBox.style.display = "block";
+
+    }
+
+    else {
+
+        priceBox.style.display = "none";
+
+    }
+
+}
+
+
+
+function createProfile() {
+
+
+    const name =
+        document.getElementById("studentName").value;
+
+
+    const skill =
+        document.getElementById("skill").value;
+
+
+    const wantedSkill =
+        document.getElementById("wantedSkill").value;
+
+
+    const description =
+        document.getElementById("skillDescription").value;
+
+
+    const experience =
+        document.getElementById("experience").value;
+
+
+    const mode =
+        document.getElementById("serviceMode").value;
+
+
+    const price =
+        document.getElementById("price").value;
+
+
+
+    if (
+        name.trim() === "" ||
+        skill.trim() === ""
+    ) {
+
+        alert(
+            "Please enter your name and the skill you want to offer."
+        );
+
+        return;
+
+    }
+
+
+
+    if (
+        mode === "exchange" &&
+        wantedSkill.trim() === ""
+    ) {
+
+        alert(
+            "Please tell us what skill you want in return."
+        );
+
+        return;
+
+    }
+
+
+
+    const newProfile = {
+
+        name: name,
+
+        skill: skill,
+
+        wantedSkill: wantedSkill,
+
+        description: description,
+
+        experience: experience,
+
+        mode: mode,
+
+        price: price
+
+    };
+
+
+
+    localStorage.setItem(
+
+        "peerNexProfile",
+
+        JSON.stringify(newProfile)
+
+    );
+
+
+
+    alert(
+        "🎉 Your PeerNex skill profile has been created!"
+    );
+
+
+
+    window.location.href =
+        "matches.html";
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
