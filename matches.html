@@ -1,569 +1,624 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Matches | PeerNex</title>
+```
+<title>Skill Matches | PeerNex</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
 
 </head>
 
-
 <body>
-
 
 <header>
 
-    <div class="logo">PeerNex</div>
+```
+<div class="logo">PeerNex</div>
 
-    <nav>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="request.html">Need Help</a>
+    <a href="offer.html">Offer Skill</a>
+    <a href="matches.html">Matches</a>
+    <a href="feedback.html">Feedback</a>
+</nav>
 
-        <a href="index.html">Home</a>
-
-        <a href="request.html">Need Help</a>
-
-        <a href="offer.html">Offer Skill</a>
-
-    </nav>
-
-    <button class="login-btn">
-        AI Powered 🤖
-    </button>
+<button class="login-btn">
+    PeerSafe 🛡️
+</button>
+```
 
 </header>
 
-
-
 <section class="matches-page">
 
+```
+<div class="section-title">
 
-    <div class="section-title">
+    <p>PEERNEX AI MATCH</p>
 
-        <p>PEERNEX AI MATCHING</p>
+    <h2>🤖 Students Who Can Help You</h2>
 
-        <h2>Best Matches For You 🤖</h2>
+    <p>
+        These students have skills that may match your requirement.
+    </p>
 
-        <p>
-            PeerNex finds students based on skills,
-            experience and service preferences.
-        </p>
+</div>
+
+
+<div id="requestSummary" class="request-summary">
+
+    <strong>Your Requirement</strong>
+
+    <p id="needText">
+        Looking for a student who can help with your task.
+    </p>
+
+    <span>🤖 AI Match</span>
+    <span>🛡️ PeerSafe</span>
+    <span>⭐ Student Community</span>
+
+</div>
+
+
+<div class="match-list">
+
+
+    <!-- ============================= -->
+    <!-- YOUR PROFILE -->
+    <!-- ============================= -->
+
+    <div class="match-card">
+
+        <div class="match-top">
+
+            <div class="student-avatar">
+                AS
+            </div>
+
+            <div class="student-info">
+
+                <h3>
+                    AM Sushree Swagatika Sahu
+                </h3>
+
+                <p>
+                    Web Developer & Designer
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐ 4.9/5
+                </div>
+
+            </div>
+
+            <div class="match-score">
+
+                <strong>97%</strong>
+
+                <small>Match</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="skills">
+
+            <span>Web Development</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>UI Design</span>
+
+        </div>
+
+
+        <div class="match-reason">
+
+            <strong>
+                🤖 Why this is a good match
+            </strong>
+
+            <p>
+                Your web development and design skills closely
+                match the student's requirement. You also support
+                SkillSwap and student-friendly services.
+            </p>
+
+        </div>
+
+
+        <div class="service-options">
+
+            <span>🏆 Experience Mode</span>
+            <span>🔄 SkillSwap</span>
+            <span>💰 ₹200</span>
+
+        </div>
+
+
+        <div class="match-buttons">
+
+            <button onclick="viewProfile('AM Sushree Swagatika Sahu')">
+                📁 View Profile
+            </button>
+
+            <button onclick="connectStudent('AM Sushree Swagatika Sahu')">
+                🔄 Request SkillSwap
+            </button>
+
+            <button onclick="openPayment('AM Sushree Swagatika Sahu', 'Web Development', 200)">
+                💳 Pay ₹200
+            </button>
+
+            <button onclick="reportStudent('AM Sushree Swagatika Sahu')">
+                🚨 Report
+            </button>
+
+            <button onclick="blockStudent('AM Sushree Swagatika Sahu')">
+                🚫 Block
+            </button>
+
+        </div>
 
     </div>
 
 
+    <!-- ============================= -->
+    <!-- PRIYA -->
+    <!-- ============================= -->
 
-    <!-- REQUEST -->
+    <div class="match-card">
 
-    <div class="request-summary">
+        <div class="match-top">
 
-        <strong>Your Request</strong>
+            <div class="student-avatar">
+                PD
+            </div>
 
-        <p id="requestText">
-            🎨 I need someone to design a poster for my college event.
-        </p>
+            <div class="student-info">
 
-        <span>🔄 Skill Exchange</span>
+                <h3>
+                    Priya Das
+                </h3>
 
-        <span id="exchangeText">
-            💡 Your Exchange Skill: Web Development
-        </span>
+                <p>
+                    Graphic Designer
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐ 4.8/5
+                </div>
+
+            </div>
+
+            <div class="match-score">
+
+                <strong>94%</strong>
+
+                <small>Match</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="skills">
+
+            <span>Graphic Design</span>
+            <span>Canva</span>
+            <span>Photoshop</span>
+            <span>Posters</span>
+            <span>Branding</span>
+
+        </div>
+
+
+        <div class="match-reason">
+
+            <strong>
+                🤖 Why this is a good match
+            </strong>
+
+            <p>
+                Priya has strong graphic design skills and can
+                help with posters, social media designs and
+                creative projects.
+            </p>
+
+        </div>
+
+
+        <div class="service-options">
+
+            <span>🏆 Experience Mode</span>
+            <span>🔄 SkillSwap</span>
+            <span>💰 ₹200</span>
+
+        </div>
+
+
+        <div class="match-buttons">
+
+            <button onclick="viewProfile('Priya Das')">
+                📁 View Portfolio
+            </button>
+
+            <button onclick="connectStudent('Priya Das')">
+                🤝 Request SkillSwap
+            </button>
+
+            <button onclick="openPayment('Priya Das', 'Graphic Design', 200)">
+                💳 Pay ₹200
+            </button>
+
+            <button onclick="reportStudent('Priya Das')">
+                🚨 Report
+            </button>
+
+            <button onclick="blockStudent('Priya Das')">
+                🚫 Block
+            </button>
+
+        </div>
 
     </div>
 
 
+    <!-- ============================= -->
+    <!-- ANANYA -->
+    <!-- ============================= -->
 
-    <div class="match-list">
+    <div class="match-card">
 
+        <div class="match-top">
 
-
-        <!-- YOUR PROFILE -->
-
-        <div class="match-card">
-
-            <div class="match-top">
-
-                <div class="student-avatar">
-                    S
-                </div>
-
-
-                <div class="student-info">
-
-                    <h3>
-                        AM Sushree Swagatika Sahu
-                    </h3>
-
-                    <p>
-                        💻 Student • Web Development & Creative Skills
-                    </p>
-
-                    <div class="rating">
-                        ⭐ New Member | SYNORA Team
-                    </div>
-
-                </div>
-
-
-                <div class="match-score">
-
-                    <strong>
-                        97%
-                    </strong>
-
-                    <small>
-                        Match
-                    </small>
-
-                </div>
-
+            <div class="student-avatar">
+                AS
             </div>
 
+            <div class="student-info">
 
-
-            <div class="skills">
-
-                <span>
-                    Web Development
-                </span>
-
-                <span>
-                    Creative Ideas
-                </span>
-
-                <span>
-                    Presentation
-                </span>
-
-                <span>
-                    Teamwork
-                </span>
-
-            </div>
-
-
-
-            <div class="match-reason">
-
-                <strong>
-                    🧠 Why this is a good match
-                </strong>
+                <h3>
+                    Ananya Sharma
+                </h3>
 
                 <p>
-                    ✓ Can offer Web Development in exchange<br>
-                    ✓ Interested in technology and creative projects<br>
-                    ✓ Open to SkillSwap collaborations<br>
-                    ✓ Suitable for student projects
+                    Content Writer
                 </p>
 
-            </div>
-
-
-
-            <div class="service-options">
-
-                <span>
-                    🔄 Can Exchange: Web Development
-                </span>
-
-                <span>
-                    💡 Wants: Graphic Design
-                </span>
-
-                <span>
-                    🏆 Experience Mode
-                </span>
+                <div class="rating">
+                    ⭐⭐⭐⭐☆ 4.7/5
+                </div>
 
             </div>
 
+            <div class="match-score">
 
+                <strong>91%</strong>
 
-            <div class="match-buttons">
-
-                <button onclick="viewProfile('AM Sushree Swagatika Sahu')">
-                    📁 View Profile
-                </button>
-
-                <button onclick="connectStudent('AM Sushree Swagatika Sahu')">
-                    🔄 Request SkillSwap
-                </button>
+                <small>Match</small>
 
             </div>
 
         </div>
 
 
+        <div class="skills">
 
-        <!-- ANANYA -->
-
-        <div class="match-card">
-
-            <div class="match-top">
-
-                <div class="student-avatar">
-                    A
-                </div>
-
-
-                <div class="student-info">
-
-                    <h3>
-                        Ananya Sharma
-                    </h3>
-
-                    <p>
-                        🎨 Graphic Designer
-                    </p>
-
-                    <div class="rating">
-                        ⭐ 4.9 | 12 completed tasks
-                    </div>
-
-                </div>
-
-
-                <div class="match-score">
-
-                    <strong>
-                        96%
-                    </strong>
-
-                    <small>
-                        Match
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="skills">
-
-                <span>Graphic Design</span>
-                <span>Canva</span>
-                <span>Posters</span>
-                <span>Social Media</span>
-
-            </div>
-
-
-
-            <div class="match-reason">
-
-                <strong>
-                    🧠 Why this is a good match
-                </strong>
-
-                <p>
-                    ✓ Strong poster design skills<br>
-                    ✓ Portfolio matches your requirement<br>
-                    ✓ Available before your deadline<br>
-                    ✓ Offers SkillSwap
-                </p>
-
-            </div>
-
-
-
-            <div class="service-options">
-
-                <span>
-                    🔄 Can Exchange: Graphic Design
-                </span>
-
-                <span>
-                    💡 Wants: Web Development
-                </span>
-
-                <span>
-                    🏆 Experience Mode
-                </span>
-
-            </div>
-
-
-
-            <div class="match-buttons">
-
-                <button onclick="viewProfile('Ananya Sharma')">
-                    📁 View Portfolio
-                </button>
-
-                <button onclick="connectStudent('Ananya Sharma')">
-                    🤝 Request SkillSwap
-                </button>
-
-            </div>
+            <span>Content Writing</span>
+            <span>Blog Writing</span>
+            <span>Copywriting</span>
+            <span>Editing</span>
 
         </div>
 
 
+        <div class="match-reason">
 
-        <!-- RAHUL -->
+            <strong>
+                🤖 Why this is a good match
+            </strong>
 
-        <div class="match-card">
-
-            <div class="match-top">
-
-                <div class="student-avatar">
-                    R
-                </div>
-
-
-                <div class="student-info">
-
-                    <h3>
-                        Rahul Verma
-                    </h3>
-
-                    <p>
-                        🎨 UI / Graphic Designer
-                    </p>
-
-                    <div class="rating">
-                        ⭐ 4.7 | 8 completed tasks
-                    </div>
-
-                </div>
-
-
-                <div class="match-score">
-
-                    <strong>
-                        91%
-                    </strong>
-
-                    <small>
-                        Match
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="skills">
-
-                <span>Graphic Design</span>
-                <span>Figma</span>
-                <span>Photoshop</span>
-                <span>UI Design</span>
-
-            </div>
-
-
-
-            <div class="match-reason">
-
-                <strong>
-                    🧠 Why this is a good match
-                </strong>
-
-                <p>
-                    ✓ Experienced in visual design<br>
-                    ✓ Good portfolio quality<br>
-                    ✓ Student-friendly pricing<br>
-                    ✓ Available this week
-                </p>
-
-            </div>
-
-
-
-            <div class="service-options">
-
-                <span>
-                    🔄 Can Exchange: UI Design
-                </span>
-
-                <span>
-                    💡 Wants: Web Development
-                </span>
-
-            </div>
-
-
-
-            <div class="match-buttons">
-
-                <button onclick="viewProfile('Rahul Verma')">
-                    📁 View Portfolio
-                </button>
-
-                <button onclick="connectStudent('Rahul Verma')">
-                    🤝 Request SkillSwap
-                </button>
-
-            </div>
+            <p>
+                Ananya can help create articles, captions,
+                blogs and other written content for student
+                projects.
+            </p>
 
         </div>
 
 
+        <div class="service-options">
 
-        <!-- PRIYA -->
-
-        <div class="match-card">
-
-            <div class="match-top">
-
-                <div class="student-avatar">
-                    P
-                </div>
-
-
-                <div class="student-info">
-
-                    <h3>
-                        Priya Das
-                    </h3>
-
-                    <p>
-                        🎨 Creative Designer
-                    </p>
-
-                    <div class="rating">
-                        ⭐ 4.8 | 15 completed tasks
-                    </div>
-
-                </div>
-
-
-                <div class="match-score">
-
-                    <strong>
-                        87%
-                    </strong>
-
-                    <small>
-                        Match
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="skills">
-
-                <span>Canva</span>
-                <span>Illustration</span>
-                <span>Posters</span>
-                <span>Content Design</span>
-
-            </div>
-
-
-
-            <div class="match-reason">
-
-                <strong>
-                    🧠 Why this is a good match
-                </strong>
-
-                <p>
-                    ✓ Matches your poster requirement<br>
-                    ✓ Strong creative portfolio<br>
-                    ✓ Offers free Experience Mode<br>
-                    ✓ High student rating
-                </p>
-
-            </div>
-
-
-
-            <div class="service-options">
-
-                <span>
-                    🔄 Can Exchange: Canva & Illustration
-                </span>
-
-                <span>
-                    💡 Wants: Web Development
-                </span>
-
-            </div>
-
-
-
-            <div class="match-buttons">
-
-                <button onclick="viewProfile('Priya Das')">
-                    📁 View Portfolio
-                </button>
-
-                <button onclick="connectStudent('Priya Das')">
-                    🤝 Request SkillSwap
-                </button>
-
-            </div>
+            <span>🏆 Experience Mode</span>
+            <span>🔄 SkillSwap</span>
+            <span>💰 ₹150</span>
 
         </div>
 
 
+        <div class="match-buttons">
+
+            <button onclick="viewProfile('Ananya Sharma')">
+                📁 View Portfolio
+            </button>
+
+            <button onclick="connectStudent('Ananya Sharma')">
+                🤝 Request SkillSwap
+            </button>
+
+            <button onclick="openPayment('Ananya Sharma', 'Content Writing', 150)">
+                💳 Pay ₹150
+            </button>
+
+            <button onclick="reportStudent('Ananya Sharma')">
+                🚨 Report
+            </button>
+
+            <button onclick="blockStudent('Ananya Sharma')">
+                🚫 Block
+            </button>
+
+        </div>
 
     </div>
+
+
+    <!-- ============================= -->
+    <!-- RAHUL -->
+    <!-- ============================= -->
+
+    <div class="match-card">
+
+        <div class="match-top">
+
+            <div class="student-avatar">
+                RK
+            </div>
+
+            <div class="student-info">
+
+                <h3>
+                    Rahul Kumar
+                </h3>
+
+                <p>
+                    Video Editor
+                </p>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆ 4.6/5
+                </div>
+
+            </div>
+
+            <div class="match-score">
+
+                <strong>88%</strong>
+
+                <small>Match</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="skills">
+
+            <span>Video Editing</span>
+            <span>Premiere Pro</span>
+            <span>Reels</span>
+            <span>YouTube</span>
+
+        </div>
+
+
+        <div class="match-reason">
+
+            <strong>
+                🤖 Why this is a good match
+            </strong>
+
+            <p>
+                Rahul can help students edit videos, reels,
+                presentations and other creative projects.
+            </p>
+
+        </div>
+
+
+        <div class="service-options">
+
+            <span>🏆 Experience Mode</span>
+            <span>🔄 SkillSwap</span>
+            <span>💰 ₹250</span>
+
+        </div>
+
+
+        <div class="match-buttons">
+
+            <button onclick="viewProfile('Rahul Kumar')">
+                📁 View Portfolio
+            </button>
+
+            <button onclick="connectStudent('Rahul Kumar')">
+                🤝 Request SkillSwap
+            </button>
+
+            <button onclick="openPayment('Rahul Kumar', 'Video Editing', 250)">
+                💳 Pay ₹250
+            </button>
+
+            <button onclick="reportStudent('Rahul Kumar')">
+                🚨 Report
+            </button>
+
+            <button onclick="blockStudent('Rahul Kumar')">
+                🚫 Block
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+```
 
 </section>
 
-
-
 <footer>
 
-    <div>
+```
+<div>
 
-        <strong>
-            PeerNex
-        </strong>
-
-        <p>
-            Learn. Share. Earn. Grow — Together.
-        </p>
-
-    </div>
-
+    <strong>PeerNex</strong>
 
     <p>
-        Built by <strong>SYNORA</strong> 💙
+        Learn. Share. Earn. Grow — Together.
     </p>
+
+</div>
+
+<p>
+    Built by <strong>SYNORA</strong> 💙
+</p>
+```
 
 </footer>
 
-
-
 <script>
 
+/* ===================================
+   GET USER REQUEST
+=================================== */
 
-function connectStudent(name) {
+const params = new URLSearchParams(
+    window.location.search
+);
 
-    alert(
-        "🤝 SkillSwap request sent to " +
-        name +
-        "!"
-    );
+const need = params.get("need");
+
+if (need) {
+
+    document.getElementById("needText").textContent =
+        "You are looking for help with: " + need;
 
 }
 
+
+/* ===================================
+   PAYMENT
+=================================== */
+
+function openPayment(
+    provider,
+    service,
+    amount
+) {
+
+    window.location.href =
+        "payment.html?provider=" +
+        encodeURIComponent(provider) +
+        "&service=" +
+        encodeURIComponent(service) +
+        "&amount=" +
+        amount;
+
+}
+
+
+/* ===================================
+   VIEW PROFILE
+=================================== */
 
 function viewProfile(name) {
 
     alert(
-        "📁 Opening " +
+        "👤 Profile\n\n" +
         name +
-        "'s profile..."
+        "\n\nThis profile contains the student's skills, experience, portfolio and ratings."
     );
 
 }
 
 
-</script>
+/* ===================================
+   SKILL SWAP
+=================================== */
 
+function connectStudent(name) {
+
+    alert(
+        "🔄 SkillSwap Request Sent!\n\n" +
+        "Your SkillSwap request has been sent to " +
+        name +
+        "."
+    );
+
+}
+
+
+/* ===================================
+   REPORT
+=================================== */
+
+function reportStudent(name) {
+
+    const confirmReport =
+        confirm(
+            "🚨 Report " +
+            name +
+            "?\n\n" +
+            "This will send a safety report to PeerNex."
+        );
+
+    if (confirmReport) {
+
+        alert(
+            "✅ Report submitted.\n\n" +
+            "PeerNex will review this report."
+        );
+
+    }
+
+}
+
+
+/* ===================================
+   BLOCK
+=================================== */
+
+function blockStudent(name) {
+
+    const confirmBlock =
+        confirm(
+            "🚫 Block " +
+            name +
+            "?"
+        );
+
+    if (confirmBlock) {
+
+        alert(
+            "✅ " +
+            name +
+            " has been blocked."
+        );
+
+    }
+
+}
+
+</script>
 
 </body>
 
