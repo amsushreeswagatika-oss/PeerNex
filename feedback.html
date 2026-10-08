@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Feedback | PeerNex</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">PeerNex</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="request.html">Need Help</a>
+        <a href="offer.html">Offer Skill</a>
+        <a href="matches.html">Matches</a>
+    </nav>
+
+    <button class="login-btn">
+        PeerSafe 🛡️
+    </button>
+
+</header>
+
+
+<section class="request-page">
+
+    <div class="section-title">
+
+        <p>PEERNEX COMMUNITY</p>
+
+        <h2>⭐ Give Feedback</h2>
+
+        <p>
+            Help other students by sharing your experience.
+        </p>
+
+    </div>
+
+
+    <div class="request-form">
+
+        <label>Student Name</label>
+
+        <input
+            type="text"
+            id="studentName"
+            value="Ananya Sharma"
+        >
+
+
+        <label>Your Rating</label>
+
+        <select id="rating">
+
+            <option value="5">⭐⭐⭐⭐⭐ — Excellent</option>
+
+            <option value="4">⭐⭐⭐⭐ — Very Good</option>
+
+            <option value="3">⭐⭐⭐ — Good</option>
+
+            <option value="2">⭐⭐ — Needs Improvement</option>
+
+            <option value="1">⭐ — Poor</option>
+
+        </select>
+
+
+        <label>Write your feedback</label>
+
+        <textarea
+            id="feedback"
+            rows="6"
+            placeholder="Example: Very helpful and completed the poster before the deadline!"
+        ></textarea>
+
+
+        <button
+            class="find-match-btn"
+            onclick="submitFeedback()"
+        >
+            ⭐ Submit Feedback
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div>
+
+        <strong>PeerNex</strong>
+
+        <p>
+            Learn. Share. Earn. Grow — Together.
+        </p>
+
+    </div>
+
+    <p>
+        Built by <strong>SYNORA</strong> 💙
+    </p>
+
+</footer>
+
+
+<script>
+
+function submitFeedback() {
+
+    const name =
+        document.getElementById("studentName").value;
+
+    const rating =
+        document.getElementById("rating").value;
+
+    const feedback =
+        document.getElementById("feedback").value;
+
+
+    if (name.trim() === "" || feedback.trim() === "") {
+
+        alert(
+            "Please enter the student name and your feedback."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "⭐ Thank you!\n\n" +
+        "Your " + rating + "-star feedback for " +
+        name +
+        " has been submitted."
+    );
+
+
+    document.getElementById("feedback").value = "";
+
+}
+
+</script>
+
+</body>
+
+</html>
