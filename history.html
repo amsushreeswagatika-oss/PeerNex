@@ -1,1290 +1,993 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-```
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>My Activity | PeerNex</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeerNex - My Activity</title>
 <link rel="stylesheet" href="style.css">
 
-
 <style>
+.activity-page {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 16px;
+    color: #222;
+}
 
-    /* =========================
-       SUMMARY
-    ========================== */
+.activity-page h1,
+.activity-page h2 {
+    margin-bottom: 12px;
+}
 
-    .history-summary {
+.activity-intro {
+    color: #666;
+    margin-bottom: 24px;
+}
 
-        max-width: 1000px;
+.activity-stats,
+.money-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
 
-        margin: 0 auto 35px;
+.stat-card,
+.activity-card,
+.request-card,
+.payment-card,
+.money-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px #0001;
+    margin-bottom: 16px;
+}
 
-        display: grid;
+.stat-card h3,
+.money-card h3 {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 10px;
+}
 
-        grid-template-columns:
-            repeat(4, 1fr);
+.stat-card strong {
+    font-size: 27px;
+    color: #4f46e5;
+}
 
-        gap: 18px;
+.money-card strong {
+    font-size: 25px;
+}
+
+.section-title {
+    margin-top: 32px;
+    margin-bottom: 15px;
+}
+
+.request-card h3,
+.payment-card h3,
+.activity-card h3 {
+    margin-top: 0;
+}
+
+.request-meta {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #e5e7eb;
+    color: #374151;
+    margin: 5px 0;
+}
+
+.status.accepted,
+.status.in-progress {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status.completed,
+.status.released {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status.rejected,
+.status.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status.payment,
+.status.securehold,
+.status.under-review {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 14px;
+}
+
+.action-buttons button,
+.activity-page button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
+
+.action-buttons .danger {
+    background: #dc2626;
+}
+
+.action-buttons .success {
+    background: #15803d;
+}
+
+.action-buttons button:hover {
+    opacity: .85;
+}
+
+.timeline {
+    border-left: 3px solid #4f46e5;
+    padding-left: 18px;
+    margin: 18px 0;
+}
+
+.timeline-step {
+    margin-bottom: 15px;
+    position: relative;
+    color: #777;
+}
+
+.timeline-step::before {
+    content: "";
+    width: 11px;
+    height: 11px;
+    background: #d1d5db;
+    border-radius: 50%;
+    position: absolute;
+    left: -25px;
+    top: 4px;
+}
+
+.timeline-step.done {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.timeline-step.done::before {
+    background: #15803d;
+}
+
+.timeline-step.current {
+    color: #4f46e5;
+    font-weight: bold;
+}
+
+.timeline-step.current::before {
+    background: #4f46e5;
+}
+
+.money-positive {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.money-negative {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.empty-state {
+    padding: 25px;
+    text-align: center;
+    color: #777;
+    background: #f3f4f6;
+    border-radius: 12px;
+}
+
+.availability-badge {
+    font-weight: bold;
+    color: #15803d;
+}
+
+.availability-badge.busy {
+    color: #dc2626;
+}
+
+.small-note {
+    color: #777;
+    font-size: 13px;
+}
+
+.record-label {
+    display: inline-block;
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 20px;
+    background: #eef2ff;
+    color: #4338ca;
+    margin-bottom: 10px;
+}
+
+body.dark-mode .activity-page {
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .activity-intro,
+body.dark-mode .request-meta,
+body.dark-mode .small-note {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .stat-card,
+body.dark-mode .activity-card,
+body.dark-mode .request-card,
+body.dark-mode .payment-card,
+body.dark-mode .money-card {
+    background: #1f2937 !important;
+    color: #f9fafb !important;
+    border: 1px solid #374151;
+    box-shadow: 0 4px 15px #0004;
+}
+
+body.dark-mode .stat-card h3,
+body.dark-mode .money-card h3 {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .stat-card strong {
+    color: #a5b4fc !important;
+}
+
+body.dark-mode .empty-state {
+    background: #374151 !important;
+    color: #d1d5db !important;
+}
+
+body.dark-mode .timeline {
+    border-color: #818cf8;
+}
+
+body.dark-mode .timeline-step {
+    color: #9ca3af;
+}
+
+body.dark-mode .timeline-step.done {
+    color: #86efac;
+}
+
+body.dark-mode .timeline-step.current {
+    color: #a5b4fc;
+}
+
+body.dark-mode .timeline-step::before {
+    background: #6b7280;
+}
+
+body.dark-mode .timeline-step.done::before {
+    background: #86efac;
+}
+
+body.dark-mode .timeline-step.current::before {
+    background: #a5b4fc;
+}
+
+body.dark-mode .status {
+    background: #374151;
+    color: #f9fafb;
+}
+
+body.dark-mode .status.accepted,
+body.dark-mode .status.in-progress {
+    background: #1e3a8a;
+    color: #dbeafe;
+}
+
+body.dark-mode .status.completed,
+body.dark-mode .status.released {
+    background: #14532d;
+    color: #dcfce7;
+}
+
+body.dark-mode .status.rejected,
+body.dark-mode .status.cancelled {
+    background: #7f1d1d;
+    color: #fee2e2;
+}
+
+body.dark-mode .status.payment,
+body.dark-mode .status.securehold,
+body.dark-mode .status.under-review {
+    background: #78350f;
+    color: #fef3c7;
+}
+
+body.dark-mode .money-positive {
+    color: #86efac;
+}
+
+body.dark-mode .money-negative {
+    color: #fca5a5;
+}
+
+body.dark-mode .record-label {
+    background: #312e81;
+    color: #c7d2fe;
+}
+
+@media(max-width:600px) {
+    .activity-page {
+        padding: 10px;
     }
 
-
-    .history-stat {
-
-        background: white;
-
-        padding: 25px;
-
-        border-radius: 18px;
-
-        text-align: center;
-
-        border: 1px solid #e5e7eb;
-
-        box-shadow:
-            0 10px 30px
-            rgba(40, 50, 90, 0.08);
-    }
-
-
-    .history-stat span {
-
-        display: block;
-
-        font-size: 30px;
-
-        margin-bottom: 8px;
-    }
-
-
-    .history-stat strong {
-
-        display: block;
-
-        font-size: 26px;
-
-        color: #4f46e5;
-    }
-
-
-    .history-stat small {
-
-        color: #6b7280;
-
-        font-weight: 600;
-    }
-
-
-    /* =========================
-       MONEY SUMMARY
-    ========================== */
-
-    .money-summary {
-
-        max-width: 1000px;
-
-        margin: 0 auto 35px;
-
-        display: grid;
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 20px;
-    }
-
-
-    .money-card {
-
-        background: white;
-
-        padding: 25px;
-
-        border-radius: 18px;
-
-        border: 1px solid #e5e7eb;
-
-        box-shadow:
-            0 10px 30px
-            rgba(40, 50, 90, 0.08);
-    }
-
-
-    .money-card h3 {
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .money-card p {
-
-        color: #6b7280;
-
-        margin-bottom: 8px;
-
-    }
-
-
-    .money-received {
-
-        color: #15803d;
-
-        font-size: 28px;
-
-        font-weight: 800;
-
-    }
-
-
-    .money-paid {
-
-        color: #dc2626;
-
-        font-size: 28px;
-
-        font-weight: 800;
-
-    }
-
-
-    /* =========================
-       SECTIONS
-    ========================== */
-
-    .history-section {
-
-        max-width: 1000px;
-
-        margin: 0 auto 35px;
-    }
-
-
-    .history-section > h2 {
-
-        margin-bottom: 18px;
-    }
-
-
-    .history-list {
-
-        display: flex;
-
-        flex-direction: column;
-
-        gap: 18px;
-    }
-
-
-    /* =========================
-       TRANSACTION CARD
-    ========================== */
-
-    .transaction-card {
-
-        background: white;
-
-        padding: 25px;
-
-        border-radius: 18px;
-
-        border: 1px solid #e5e7eb;
-
-        box-shadow:
-            0 10px 30px
-            rgba(40, 50, 90, 0.08);
-    }
-
-
-    .transaction-top {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 18px;
-    }
-
-
-    .transaction-icon {
-
-        width: 58px;
-
-        height: 58px;
-
-        border-radius: 15px;
-
-        background: #eef2ff;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-size: 27px;
-
-        flex-shrink: 0;
-    }
-
-
-    .transaction-info {
-
+    .action-buttons button {
         flex: 1;
     }
-
-
-    .transaction-info h3 {
-
-        margin-bottom: 5px;
-
-        font-size: 20px;
-    }
-
-
-    .transaction-info p {
-
-        color: #596579;
-
-        margin-bottom: 8px;
-    }
-
-
-    .transaction-status {
-
-        display: inline-block;
-
-        padding: 6px 12px;
-
-        border-radius: 20px;
-
-        background: #dcfce7;
-
-        color: #166534;
-
-        font-size: 12px;
-
-        font-weight: 700;
-    }
-
-
-    .amount-received {
-
-        color: #15803d;
-
-        font-size: 23px;
-
-        font-weight: 800;
-
-        text-align: right;
-
-        white-space: nowrap;
-    }
-
-
-    .amount-paid {
-
-        color: #dc2626;
-
-        font-size: 23px;
-
-        font-weight: 800;
-
-        text-align: right;
-
-        white-space: nowrap;
-    }
-
-
-    .amount-label {
-
-        display: block;
-
-        font-size: 12px;
-
-        margin-top: 4px;
-
-        font-weight: 600;
-    }
-
-
-    /* =========================
-       TIMELINE
-    ========================== */
-
-    .payment-timeline {
-
-        margin-top: 25px;
-
-        padding: 20px;
-
-        background: #f8f9ff;
-
-        border-radius: 14px;
-
-        border: 1px solid #eef0f7;
-    }
-
-
-    .timeline-title {
-
-        font-size: 14px;
-
-        font-weight: 800;
-
-        color: #374151;
-
-        margin-bottom: 17px;
-    }
-
-
-    .timeline {
-
-        position: relative;
-
-        display: flex;
-
-        flex-direction: column;
-
-        gap: 18px;
-    }
-
-
-    .timeline::before {
-
-        content: "";
-
-        position: absolute;
-
-        left: 10px;
-
-        top: 10px;
-
-        bottom: 10px;
-
-        width: 2px;
-
-        background: #c7d2fe;
-    }
-
-
-    .timeline-item {
-
-        position: relative;
-
-        display: flex;
-
-        align-items: flex-start;
-
-        gap: 14px;
-    }
-
-
-    .timeline-dot {
-
-        width: 22px;
-
-        height: 22px;
-
-        border-radius: 50%;
-
-        background: #4f46e5;
-
-        color: white;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-size: 12px;
-
-        z-index: 1;
-
-        flex-shrink: 0;
-    }
-
-
-    .timeline-content strong {
-
-        display: block;
-
-        color: #374151;
-
-        margin-bottom: 3px;
-    }
-
-
-    .timeline-content span {
-
-        color: #6b7280;
-
-        font-size: 13px;
-    }
-
-
-    /* =========================
-       OTHER HISTORY
-    ========================== */
-
-    .history-card {
-
-        background: white;
-
-        padding: 22px;
-
-        border-radius: 16px;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 18px;
-
-        border: 1px solid #e5e7eb;
-
-        box-shadow:
-            0 8px 25px
-            rgba(40, 50, 90, 0.08);
-    }
-
-
-    .history-icon {
-
-        width: 55px;
-
-        height: 55px;
-
-        border-radius: 14px;
-
-        background: #eef2ff;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-size: 25px;
-
-        flex-shrink: 0;
-    }
-
-
-    .history-info {
-
-        flex: 1;
-    }
-
-
-    .history-info h3 {
-
-        margin-bottom: 5px;
-    }
-
-
-    .history-info p {
-
-        color: #596579;
-
-        margin-bottom: 8px;
-    }
-
-
-    .history-status {
-
-        display: inline-block;
-
-        padding: 5px 10px;
-
-        border-radius: 20px;
-
-        font-size: 12px;
-
-        font-weight: 700;
-    }
-
-
-    .completed {
-
-        background: #dcfce7;
-
-        color: #166534;
-    }
-
-
-    .history-amount {
-
-        font-size: 20px;
-
-        font-weight: 800;
-
-        color: #4f46e5;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 750px) {
-
-        .history-summary {
-
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
-
-        .money-summary {
-
-            grid-template-columns: 1fr;
-        }
-
-        .transaction-top {
-
-            align-items: flex-start;
-        }
-
-    }
-
-
-    @media (max-width: 500px) {
-
-        .history-summary {
-
-            grid-template-columns: 1fr;
-        }
-
-        .transaction-top {
-
-            flex-wrap: wrap;
-        }
-
-        .amount-received,
-        .amount-paid {
-
-            width: 100%;
-
-            text-align: left;
-
-            margin-left: 76px;
-        }
-
-        .history-card {
-
-            align-items: flex-start;
-        }
-
-    }
-
+}
 </style>
-```
-
 </head>
 
 <body>
 
 <header>
-
-```
-<div class="logo">
-    PeerNex
-</div>
-
-
-<nav>
-
-    <a href="index.html">
-        Home
-    </a>
-
-    <a href="request.html">
-        Need Help
-    </a>
-
-    <a href="offer.html">
-        Offer Skill
-    </a>
-
-    <a href="matches.html">
-        Matches
-    </a>
-
-    <a href="feedback.html">
-        Feedback
-    </a>
-
-    <a href="history.html">
-        My Activity
-    </a>
-
-</nav>
-
-
-<button class="login-btn">
-    PeerSafe 🛡️
-</button>
-```
-
+    <div class="logo">PeerNex</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="request.html">Need Help</a>
+        <a href="offer.html">Offer Skill</a>
+        <a href="matches.html">Matches</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="history.html">My Activity</a>
+        <a href="chat.html">Chat</a>
+    </nav>
 </header>
 
-<section class="request-page">
+<main class="activity-page">
 
-```
-<div class="section-title">
+<h1>📊 My Activity</h1>
+<p class="activity-intro">
+Track your services, requests, transactions, payments and skill exchanges in one place.
+</p>
 
-    <p>
-        YOUR PEERNEX ACTIVITY
-    </p>
+<!-- ACTIVITY COUNTERS -->
+<div class="activity-stats">
 
+    <div class="stat-card">
+        <h3>Services Provided</h3>
+        <strong id="providedCount">1</strong>
+    </div>
 
-    <h2>
-        📊 My Activity
-    </h2>
+    <div class="stat-card">
+        <h3>Services Received</h3>
+        <strong id="receivedCount">1</strong>
+    </div>
 
+    <div class="stat-card">
+        <h3>Skill Exchanges</h3>
+        <strong id="exchangeCount">1</strong>
+    </div>
 
-    <p>
-        Track the services you provide,
-        services you receive, payments
-        and skill exchanges.
-    </p>
+    <div class="stat-card">
+        <h3>Transactions</h3>
+        <strong id="paymentCount">2</strong>
+    </div>
 
 </div>
 
-
-
-<!-- =========================
-     ACTIVITY COUNTERS
-========================== -->
-
-<div class="history-summary">
-
-
-    <div class="history-stat">
-
-        <span>
-            💳
-        </span>
-
-        <strong>
-            2
-        </strong>
-
-        <small>
-            Transactions
-        </small>
-
-    </div>
-
-
-    <div class="history-stat">
-
-        <span>
-            🛠️
-        </span>
-
-        <strong>
-            1
-        </strong>
-
-        <small>
-            Services Provided
-        </small>
-
-    </div>
-
-
-    <div class="history-stat">
-
-        <span>
-            🎓
-        </span>
-
-        <strong>
-            1
-        </strong>
-
-        <small>
-            Services Received
-        </small>
-
-    </div>
-
-
-    <div class="history-stat">
-
-        <span>
-            🔄
-        </span>
-
-        <strong>
-            1
-        </strong>
-
-        <small>
-            Skill Exchanges
-        </small>
-
-    </div>
-
-
-</div>
-
-
-
-<!-- =========================
-     MONEY SUMMARY
-========================== -->
+<!-- MONEY SUMMARY -->
+<h2 class="section-title">💵 Money Summary</h2>
 
 <div class="money-summary">
 
+    <div class="money-card">
+        <h3>Money Received</h3>
+        <strong class="money-positive" id="moneyReceived">+₹200</strong>
+        <p class="small-note">From services provided</p>
+    </div>
 
     <div class="money-card">
-
-        <h3>
-            💰 Money Received
-        </h3>
-
-        <p>
-            Earnings from services
-            you provided.
-        </p>
-
-        <div class="money-received">
-            +₹200
-        </div>
-
-    </div>
-
-
-    <div class="money-card">
-
-        <h3>
-            💳 Money Paid
-        </h3>
-
-        <p>
-            Payments for services
-            you received.
-        </p>
-
-        <div class="money-paid">
-            −₹300
-        </div>
-
-    </div>
-
-
-</div>
-
-
-
-<!-- =========================
-     TRANSACTION HISTORY
-========================== -->
-
-<div class="history-section">
-
-    <h2>
-        💳 Transaction History
-    </h2>
-
-
-    <div class="history-list">
-
-
-        <!-- RECEIVED PAYMENT -->
-
-
-        <div class="transaction-card">
-
-
-            <div class="transaction-top">
-
-
-                <div class="transaction-icon">
-                    🎨
-                </div>
-
-
-                <div class="transaction-info">
-
-                    <h3>
-                        Graphic Design
-                    </h3>
-
-
-                    <p>
-                        Client:
-                        <strong>
-                            Ananya Sharma
-                        </strong>
-                    </p>
-
-
-                    <span class="transaction-status">
-                        ✅ Completed
-                    </span>
-
-                </div>
-
-
-                <div class="amount-received">
-
-                    +₹200
-
-                    <span class="amount-label">
-                        💰 Received
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- RECEIVED TIMELINE -->
-
-
-            <div class="payment-timeline">
-
-
-                <div class="timeline-title">
-                    🔐 PeerNex SecureHold Timeline
-                </div>
-
-
-                <div class="timeline">
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                            ✓
-                        </div>
-
-
-                        <div class="timeline-content">
-
-                            <strong>
-                                Client Paid / Funded SecureHold
-                            </strong>
-
-                            <span>
-                                Ananya Sharma funded
-                                ₹200 securely before
-                                the service started.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                            ✓
-                        </div>
-
-
-                        <div class="timeline-content">
-
-                            <strong>
-                                Work Delivered
-                            </strong>
-
-                            <span>
-                                Graphic design work
-                                was successfully delivered.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                            ✓
-                        </div>
-
-
-                        <div class="timeline-content">
-
-                            <strong>
-                                Payment Released to You
-                            </strong>
-
-                            <span>
-                                ₹200 was released to you
-                                after successful completion.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- PAID PAYMENT -->
-
-
-        <div class="transaction-card">
-
-
-            <div class="transaction-top">
-
-
-                <div class="transaction-icon">
-                    💻
-                </div>
-
-
-                <div class="transaction-info">
-
-                    <h3>
-                        Web Development
-                    </h3>
-
-
-                    <p>
-                        Service Provider:
-                        <strong>
-                            Priya Das
-                        </strong>
-                    </p>
-
-
-                    <span class="transaction-status">
-                        ✅ Completed
-                    </span>
-
-                </div>
-
-
-                <div class="amount-paid">
-
-                    −₹300
-
-                    <span class="amount-label">
-                        💳 Paid
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- PAID TIMELINE -->
-
-
-            <div class="payment-timeline">
-
-
-                <div class="timeline-title">
-                    🔐 PeerNex SecureHold Timeline
-                </div>
-
-
-                <div class="timeline">
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                            ✓
-                        </div>
-
-
-                        <div class="timeline-content">
-
-                            <strong>
-                                You Paid / Funded SecureHold
-                            </strong>
-
-                            <span>
-                                ₹300 was securely held
-                                before Priya started
-                                the web development work.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                            ✓
-                        </div>
-
-
-                        <div class="timeline-content">
-
-                            <strong>
-                                Service Delivered
-                            </strong>
-
-                            <span>
-                                Priya Das completed and
-                                delivered the web development
-                                service.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-dot">
-                            ✓
-                        </div>
-
-
-                        <div class="timeline-content">
-
-                            <strong>
-                                Payment Released to Provider
-                            </strong>
-
-                            <span>
-                                ₹300 was released to Priya
-                                after the service was confirmed.
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
+        <h3>Money Paid</h3>
+        <strong class="money-negative" id="moneyPaid">−₹300</strong>
+        <p class="small-note">For services received</p>
     </div>
 
 </div>
 
+<!-- AVAILABILITY -->
+<h2 class="section-title">👤 Provider Availability</h2>
 
-
-<!-- =========================
-     SERVICES PROVIDED
-========================== -->
-
-<div class="history-section">
-
-    <h2>
-        🛠️ Services I Provided
-    </h2>
-
-
-    <div class="history-list">
-
-
-        <div class="history-card">
-
-
-            <div class="history-icon">
-                🎨
-            </div>
-
-
-            <div class="history-info">
-
-                <h3>
-                    Graphic Design
-                </h3>
-
-                <p>
-                    Provided poster design
-                    service to Ananya Sharma.
-                </p>
-
-                <span class="history-status completed">
-                    ✅ Completed
-                </span>
-
-            </div>
-
-
-            <div class="history-amount">
-                +₹200
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================
-     SERVICES RECEIVED
-========================== -->
-
-<div class="history-section">
-
-    <h2>
-        🎓 Services I Received
-    </h2>
-
-
-    <div class="history-list">
-
-
-        <div class="history-card">
-
-
-            <div class="history-icon">
-                💻
-            </div>
-
-
-            <div class="history-info">
-
-                <h3>
-                    Web Development
-                </h3>
-
-                <p>
-                    Received website development
-                    help from Priya Das.
-                </p>
-
-                <span class="history-status completed">
-                    ✅ Completed
-                </span>
-
-            </div>
-
-
-            <div class="history-amount">
-                −₹300
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================
-     SKILLSWAP
-========================== -->
-
-<div class="history-section">
-
-
-    <h2>
-        🔄 SkillSwap History
-    </h2>
-
-
-    <div class="history-list">
-
-
-        <div class="history-card">
-
-
-            <div class="history-icon">
-                🔄
-            </div>
-
-
-            <div class="history-info">
-
-                <h3>
-                    Web Development
-                    ↔ Graphic Design
-                </h3>
-
-                <p>
-                    Exchanged web development
-                    help for graphic design support.
-                    No money was involved.
-                </p>
-
-                <span class="history-status completed">
-                    ✅ Completed
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</div>
-```
-
-</section>
-
-<footer>
-
-```
-<div>
-
-    <strong>
-        PeerNex
-    </strong>
-
+<div class="activity-card">
     <p>
-        Learn. Share. Earn. Grow — Together.
+        Your current status:
+        <span id="myAvailability" class="availability-badge">Free</span>
     </p>
-
+    <small class="small-note">
+        Your status changes according to your accepted active work.
+    </small>
 </div>
 
+<!-- WORK IN PROGRESS -->
+<h2 class="section-title">📌 Work in Progress & Requests</h2>
+<div id="requestsContainer"></div>
 
-<p>
-    Built by
-    <strong>
-        SYNORA
-    </strong>
-    💙
-</p>
-```
+<!-- PAYMENT HISTORY -->
+<h2 class="section-title">💰 Payment & Transaction History</h2>
+<div id="paymentContainer"></div>
 
-</footer>
+<!-- WORK HISTORY -->
+<h2 class="section-title">🛠️ Work History</h2>
+<div id="workContainer"></div>
+
+<!-- SKILL EXCHANGE -->
+<h2 class="section-title">🤝 Skill Exchange History</h2>
+<div id="exchangeContainer"></div>
+
+</main>
+
+<script>
+const STORAGE_KEY = "peernexServiceRequests";
+const MY_NAME = "AM Sushree Swagatika Sahu";
+
+/* ORIGINAL SAMPLE RECORDS */
+const sampleTransactions = [
+    {
+        id: "PNX-TXN-001",
+        service: "Graphic Design",
+        person: "Ananya Sharma",
+        amount: 200,
+        type: "received",
+        status: "Released"
+    },
+    {
+        id: "PNX-TXN-002",
+        service: "Web Development",
+        person: "Priya Das",
+        amount: 300,
+        type: "paid",
+        status: "Released"
+    }
+];
+
+const sampleExchanges = [
+    {
+        details: "Web Development ↔ Graphic Design",
+        person: "PeerNex Student",
+        type: "sample"
+    }
+];
+
+const timelineSteps = [
+    "Request submitted",
+    "Payment arranged",
+    "SecureHold",
+    "Service in progress",
+    "Service completed",
+    "Student confirmation",
+    "Payment released"
+];
+
+function getRequests() {
+    try {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(data) ? data : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function saveRequests(requests) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(requests));
+}
+
+function getExchanges() {
+    try {
+        const data = JSON.parse(
+            localStorage.getItem("peernexSkillExchanges") || "[]"
+        );
+        return Array.isArray(data) ? data : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function safeText(value) {
+    return String(value || "").replace(/[&<>"']/g, char => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+    })[char]);
+}
+
+function statusClass(status) {
+    return String(status || "").toLowerCase().replace(/\s+/g, "-");
+}
+
+function isActive(status) {
+    return [
+        "Accepted",
+        "Payment",
+        "SecureHold",
+        "In Progress",
+        "Under Review"
+    ].includes(status);
+}
+
+function isPaymentStatus(status) {
+    return [
+        "Payment",
+        "SecureHold",
+        "In Progress",
+        "Under Review",
+        "Completed",
+        "Released"
+    ].includes(status);
+}
+
+/* AVAILABILITY */
+function getAvailability(requests) {
+    return requests.some(request =>
+        request.provider === MY_NAME && isActive(request.status)
+    ) ? "Busy" : "Free";
+}
+
+function updateAvailability() {
+    const status = getAvailability(getRequests());
+    const element = document.getElementById("myAvailability");
+
+    element.textContent = status;
+    element.className = "availability-badge" +
+        (status === "Busy" ? " busy" : "");
+}
+
+/* UPDATE REQUEST STATUS */
+function updateRequest(index, newStatus) {
+    const requests = getRequests();
+
+    if (!requests[index]) return;
+
+    requests[index].status = newStatus;
+    requests[index].updatedAt = new Date().toISOString();
+
+    saveRequests(requests);
+    renderPage();
+}
+
+function acceptRequest(index) {
+    updateRequest(index, "Accepted");
+}
+
+function rejectRequest(index) {
+    if (!confirm("Are you sure you want to reject this request?")) return;
+    updateRequest(index, "Rejected");
+}
+
+function arrangePayment(index) {
+    updateRequest(index, "Payment");
+}
+
+function confirmSecureHold(index) {
+    if (!confirm("Confirm that the demo payment has been arranged and placed on SecureHold?")) return;
+    updateRequest(index, "SecureHold");
+}
+
+function startWork(index) {
+    updateRequest(index, "In Progress");
+}
+
+function submitReview(index) {
+    updateRequest(index, "Under Review");
+}
+
+function completeWork(index) {
+    if (!confirm("Confirm that this service has been completed?")) return;
+    updateRequest(index, "Completed");
+}
+
+function releasePayment(index) {
+    if (!confirm("Confirm completion and release the demo payment?")) return;
+    updateRequest(index, "Released");
+}
+
+function cancelRequest(index) {
+    if (!confirm("Are you sure you want to cancel this request?")) return;
+    updateRequest(index, "Cancelled");
+}
+
+/* OPEN CHAT FOR THE PARTICULAR REQUEST */
+function openRequestChat(index) {
+    const request = getRequests()[index];
+    if (!request) return;
+
+    const otherPerson = request.provider === MY_NAME
+        ? (request.client || "PeerNex Student")
+        : (request.provider || "PeerNex Student");
+
+    const url = "chat.html?user=" + encodeURIComponent(otherPerson) +
+        "&service=" + encodeURIComponent(request.service || "Service") +
+        "&request=" + encodeURIComponent(request.id || "") +
+        "&amount=" + encodeURIComponent(request.amount || "");
+
+    window.location.href = url;
+}
+
+/* REQUESTS AND WORK PROGRESS */
+function renderRequests(requests) {
+    const container = document.getElementById("requestsContainer");
+    container.innerHTML = "";
+
+    if (!requests.length) {
+        container.innerHTML =
+            '<div class="empty-state">No service requests yet. Your new requests will appear here.</div>';
+        return;
+    }
+
+    requests.forEach((request, index) => {
+        const status = request.status || "Request Sent";
+        const isProvider = request.provider === MY_NAME;
+
+        const person = isProvider
+            ? (request.client || "Student")
+            : (request.provider || "Student");
+
+        let buttons = "";
+
+        if (isProvider && status === "Request Sent") {
+            buttons += `<button class="success" onclick="acceptRequest(${index})">Accept Request</button>`;
+            buttons += `<button class="danger" onclick="rejectRequest(${index})">Reject</button>`;
+        }
+
+        if (isProvider && status === "Accepted") {
+            buttons += `<button onclick="arrangePayment(${index})">Mark Payment Arranged</button>`;
+            buttons += `<button onclick="startWork(${index})">Start Work</button>`;
+        }
+
+        if (!isProvider && status === "Payment") {
+            buttons += `<button class="success" onclick="confirmSecureHold(${index})">Confirm SecureHold</button>`;
+        }
+
+        if (isProvider && status === "SecureHold") {
+            buttons += `<button onclick="startWork(${index})">Start Work</button>`;
+        }
+
+        if (isProvider && status === "In Progress") {
+            buttons += `<button onclick="submitReview(${index})">Submit for Review</button>`;
+        }
+
+        if (!isProvider && status === "Under Review") {
+            buttons += `<button class="success" onclick="completeWork(${index})">Confirm Completed</button>`;
+        }
+
+        if (isProvider && status === "Under Review") {
+            buttons += `<button onclick="openRequestChat(${index})">Discuss Work</button>`;
+        }
+
+        if (isProvider && status === "Completed") {
+            buttons += `<button class="success" onclick="releasePayment(${index})">Release Demo Payment</button>`;
+        }
+
+        if (isActive(status) || status === "Request Sent") {
+            buttons += `<button onclick="openRequestChat(${index})">💬 Contact</button>`;
+            buttons += `<button class="danger" onclick="cancelRequest(${index})">Cancel</button>`;
+        }
+
+        const card = document.createElement("div");
+        card.className = "request-card";
+
+        card.innerHTML = `
+            <h3>${safeText(request.service || "Service Request")}</h3>
+
+            <p class="request-meta">
+                ${isProvider ? "Client" : "Provider"}: ${safeText(person)}<br>
+                Amount: ₹${safeText(request.amount || "0")}<br>
+                Request ID: ${safeText(request.id || "N/A")}<br>
+                Created: ${safeText(request.createdAt ? new Date(request.createdAt).toLocaleString() : "N/A")}
+            </p>
+
+            <span class="status ${statusClass(status)}">${safeText(status)}</span>
+
+            <div class="action-buttons">${buttons}</div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+/* PAYMENT TIMELINE */
+function getTimelineIndex(status) {
+    const positions = {
+        "Request Sent": 0,
+        "Accepted": 0,
+        "Payment": 1,
+        "SecureHold": 2,
+        "In Progress": 3,
+        "Under Review": 4,
+        "Completed": 5,
+        "Released": 6
+    };
+
+    return positions[status] ?? 0;
+}
+
+function createTimeline(status, completedSample = false) {
+    const current = completedSample ? 6 : getTimelineIndex(status);
+
+    return `
+        <div class="timeline">
+            ${timelineSteps.map((step, index) => {
+                let className = "";
+
+                if (index < current || (completedSample && index === current)) {
+                    className = "done";
+                } else if (index === current) {
+                    className = "current";
+                }
+
+                return `
+                    <div class="timeline-step ${className}">
+                        ${index + 1}. ${step}
+                    </div>
+                `;
+            }).join("")}
+        </div>
+    `;
+}
+
+/* PAYMENT HISTORY */
+function renderPayments(requests) {
+    const container = document.getElementById("paymentContainer");
+    container.innerHTML = "";
+
+    /* Original ₹200 transaction */
+    container.innerHTML += `
+        <div class="payment-card">
+            <span class="record-label">Previous Transaction</span>
+            <h3>🎨 Graphic Design</h3>
+            <p>Client: Ananya Sharma</p>
+            <p class="money-positive">Amount Received: +₹200</p>
+            <p>Transaction ID: PNX-TXN-001</p>
+            <span class="status released">Payment Released</span>
+            ${createTimeline("Released", true)}
+            <small class="small-note">Example transaction record from your original PeerNex activity.</small>
+        </div>
+    `;
+
+    /* Original ₹300 transaction */
+    container.innerHTML += `
+        <div class="payment-card">
+            <span class="record-label">Previous Transaction</span>
+            <h3>💻 Web Development</h3>
+            <p>Provider: Priya Das</p>
+            <p class="money-negative">Amount Paid: −₹300</p>
+            <p>Transaction ID: PNX-TXN-002</p>
+            <span class="status released">Payment Released</span>
+            ${createTimeline("Released", true)}
+            <small class="small-note">Example transaction record from your original PeerNex activity.</small>
+        </div>
+    `;
+
+    const payments = requests.filter(request =>
+        isPaymentStatus(request.status)
+    );
+
+    payments.forEach(request => {
+        const isProvider = request.provider === MY_NAME;
+        const amount = Number(request.amount || 0);
+
+        const paymentStatus = request.status === "Released"
+            ? "Payment Released"
+            : request.status === "Completed"
+            ? "Completed - Awaiting Release"
+            : "SecureHold / Work in Progress";
+
+        const card = document.createElement("div");
+        card.className = "payment-card";
+
+        card.innerHTML = `
+            <span class="record-label">Live Activity</span>
+            <h3>${safeText(request.service || "Service")}</h3>
+
+            <p>${isProvider ? "Client" : "Provider"}:
+                ${safeText(isProvider ? request.client : request.provider)}
+            </p>
+
+            <p class="${isProvider ? "money-positive" : "money-negative"}">
+                ${isProvider ? "Amount to receive" : "Amount to pay"}: ₹${amount}
+            </p>
+
+            <p>Request ID: ${safeText(request.id || "N/A")}</p>
+
+            <span class="status ${statusClass(request.status)}">
+                ${safeText(paymentStatus)}
+            </span>
+
+            ${createTimeline(request.status)}
+
+            <small class="small-note">
+                Demo tracking only. No real payment or escrow transaction is processed.
+            </small>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+/* WORK HISTORY */
+function renderWork(requests) {
+    const container = document.getElementById("workContainer");
+    container.innerHTML = "";
+
+    /* Original service provided */
+    container.innerHTML += `
+        <div class="activity-card">
+            <span class="record-label">Previous Work Record</span>
+            <h3>🎨 Graphic Design</h3>
+            <p>Service Provided</p>
+            <p class="request-meta">
+                Client: Ananya Sharma<br>
+                Amount: ₹200
+            </p>
+            <span class="status released">Completed</span>
+        </div>
+    `;
+
+    /* Original service received */
+    container.innerHTML += `
+        <div class="activity-card">
+            <span class="record-label">Previous Work Record</span>
+            <h3>💻 Web Development</h3>
+            <p>Service Received</p>
+            <p class="request-meta">
+                Provider: Priya Das<br>
+                Amount: ₹300
+            </p>
+            <span class="status released">Completed</span>
+        </div>
+    `;
+
+    const work = requests.filter(request =>
+        request.provider === MY_NAME || request.client === MY_NAME
+    );
+
+    work.forEach(request => {
+        const isProvider = request.provider === MY_NAME;
+        const card = document.createElement("div");
+        card.className = "activity-card";
+
+        card.innerHTML = `
+            <span class="record-label">Live Activity</span>
+            <h3>${safeText(request.service || "Service")}</h3>
+
+            <p>${isProvider ? "Service Provided" : "Service Received"}</p>
+
+            <p class="request-meta">
+                ${isProvider
+                    ? "Client: " + safeText(request.client || "Student")
+                    : "Provider: " + safeText(request.provider || "Student")
+                }<br>
+                Amount: ₹${safeText(request.amount || "0")}
+            </p>
+
+            <span class="status ${statusClass(request.status)}">
+                ${safeText(request.status || "Request Sent")}
+            </span>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+/* SKILL EXCHANGE HISTORY */
+function renderExchanges() {
+    const container = document.getElementById("exchangeContainer");
+    const exchanges = getExchanges();
+
+    container.innerHTML = `
+        <div class="activity-card">
+            <span class="record-label">Previous SkillSwap Record</span>
+            <h3>🤝 Skill Exchange</h3>
+            <p>Web Development ↔ Graphic Design</p>
+            <span class="status completed">Recorded</span>
+        </div>
+    `;
+
+    exchanges.forEach(exchange => {
+        const card = document.createElement("div");
+        card.className = "activity-card";
+
+        card.innerHTML = `
+            <span class="record-label">Live Activity</span>
+            <h3>🤝 Skill Exchange</h3>
+            <p>${safeText(exchange.details || exchange.skill || "Skill exchange")}</p>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+/* MAIN PAGE */
+function renderPage() {
+    const requests = getRequests();
+    const exchanges = getExchanges();
+
+    const provided = requests.filter(request =>
+        request.provider === MY_NAME &&
+        ["Completed", "Released"].includes(request.status)
+    );
+
+    const received = requests.filter(request =>
+        request.client === MY_NAME &&
+        ["Completed", "Released"].includes(request.status)
+    );
+
+    const payments = requests.filter(request =>
+        isPaymentStatus(request.status)
+    );
+
+    const receivedAmount = 200 + requests.reduce((total, request) => {
+        if (request.provider === MY_NAME && request.status === "Released") {
+            return total + Number(request.amount || 0);
+        }
+        return total;
+    }, 0);
+
+    const paidAmount = 300 + requests.reduce((total, request) => {
+        if (request.client === MY_NAME && request.status === "Released") {
+            return total + Number(request.amount || 0);
+        }
+        return total;
+    }, 0);
+
+    document.getElementById("providedCount").textContent =
+        1 + provided.length;
+
+    document.getElementById("receivedCount").textContent =
+        1 + received.length;
+
+    document.getElementById("exchangeCount").textContent =
+        1 + exchanges.length;
+
+    document.getElementById("paymentCount").textContent =
+        2 + payments.length;
+
+    document.getElementById("moneyReceived").textContent =
+        "+₹" + receivedAmount;
+
+    document.getElementById("moneyPaid").textContent =
+        "−₹" + paidAmount;
+
+    updateAvailability();
+    renderRequests(requests);
+    renderPayments(requests);
+    renderWork(requests);
+    renderExchanges();
+}
+
+/* INITIALIZE */
+renderPage();
+</script>
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
 
 

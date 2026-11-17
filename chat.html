@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeerNex Chat</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.chat-page {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 12px;
+}
+
+.chat-panel {
+    background: white;
+    color: #222;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px #0002;
+}
+
+.chat-head {
+    padding: 20px;
+    background: #4f46e5;
+    color: white;
+}
+
+.chat-head h2 {
+    margin-top: 0;
+    color: white;
+}
+
+.chat-head p {
+    margin: 7px 0;
+    color: white;
+}
+
+.chat-service {
+    display: inline-block;
+    background: #ffffff25;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 8px;
+    color: white;
+}
+
+.language-info {
+    padding: 15px 16px;
+    background: #f0fdf4;
+    border-bottom: 1px solid #ddd;
+    color: #222;
+}
+
+.language-info strong {
+    display: block;
+    margin-bottom: 9px;
+}
+
+.language-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.language-tag {
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 20px;
+    padding: 6px 11px;
+    font-size: 13px;
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px;
+    background: #fff;
+    color: #222;
+}
+
+.settings label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.settings select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    color: #222;
+}
+
+.messages {
+    padding: 16px;
+    min-height: 200px;
+    max-height: 380px;
+    overflow: auto;
+    background: #f4f5ff;
+}
+
+.message {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 12px;
+    background: white;
+    overflow-wrap: anywhere;
+    max-width: 85%;
+    color: #222;
+}
+
+.mine {
+    margin-left: 15%;
+    background: #e0e7ff;
+}
+
+.message p {
+    white-space: pre-wrap;
+}
+
+.message small {
+    color: #777;
+    display: block;
+    margin-top: 5px;
+}
+
+.message button {
+    margin-top: 8px;
+    padding: 7px 10px;
+    font-size: 12px;
+}
+
+.composer {
+    display: flex;
+    gap: 8px;
+    padding: 14px;
+    flex-wrap: wrap;
+    background: white;
+}
+
+.composer input {
+    flex: 1;
+    min-width: 120px;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    color: #222;
+}
+
+button {
+    padding: 11px 14px;
+    border: 0;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .88;
+}
+
+.note {
+    padding: 0 14px 14px;
+    font-size: 13px;
+    color: #666;
+    background: white;
+}
+
+.status-text {
+    padding: 0 16px 12px;
+    font-size: 13px;
+    color: #666;
+    background: white;
+}
+
+/* =================================
+   COMPLETE CHAT DARK MODE
+================================= */
+
+body.dark-mode .chat-page {
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .chat-panel {
+    background: #1f2937 !important;
+    color: #f9fafb !important;
+    box-shadow: 0 5px 25px #0005;
+}
+
+body.dark-mode .chat-head {
+    background: #3730a3 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .chat-head h2,
+body.dark-mode .chat-head p {
+    color: #ffffff !important;
+}
+
+body.dark-mode .chat-service {
+    background: #ffffff25;
+    color: #ffffff !important;
+}
+
+body.dark-mode .language-info {
+    background: #172f28 !important;
+    border-color: #374151 !important;
+    color: #f9fafb !important;
+}
+
+body.dark-mode .language-info strong {
+    color: #f9fafb !important;
+}
+
+body.dark-mode .language-tag {
+    background: #166534 !important;
+    color: #dcfce7 !important;
+}
+
+body.dark-mode .settings {
+    background: #1f2937 !important;
+    color: #f9fafb !important;
+}
+
+body.dark-mode .settings label {
+    color: #f9fafb !important;
+}
+
+body.dark-mode .settings select {
+    background: #111827 !important;
+    color: #f9fafb !important;
+    border-color: #4b5563 !important;
+}
+
+body.dark-mode .settings select option {
+    background: #1f2937;
+    color: #ffffff;
+}
+
+body.dark-mode .messages {
+    background: #111827 !important;
+}
+
+body.dark-mode .message {
+    background: #374151 !important;
+    color: #f9fafb !important;
+}
+
+body.dark-mode .message strong,
+body.dark-mode .message p {
+    color: #f9fafb !important;
+}
+
+body.dark-mode .message small {
+    color: #d1d5db !important;
+}
+
+body.dark-mode .message.mine {
+    background: #3730a3 !important;
+}
+
+body.dark-mode .composer {
+    background: #1f2937 !important;
+}
+
+body.dark-mode .composer input {
+    background: #111827 !important;
+    color: #ffffff !important;
+    border-color: #4b5563 !important;
+}
+
+body.dark-mode .composer input::placeholder {
+    color: #9ca3af !important;
+}
+
+body.dark-mode .note,
+body.dark-mode .status-text {
+    background: #1f2937 !important;
+    color: #cbd5e1 !important;
+}
+
+@media(max-width:550px) {
+    .settings {
+        grid-template-columns: 1fr;
+    }
+
+    .composer > * {
+        flex: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">PeerNex</div>
+
+    <nav>
+        <a href="index.html" id="navHome">Home</a>
+        <a href="request.html" id="navRequest">Need Help</a>
+        <a href="offer.html" id="navOffer">Offer Skill</a>
+        <a href="matches.html" id="navMatches">Matches</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="history.html" id="navHistory">My Activity</a>
+        <a href="chat.html" id="navChat">Chat</a>
+    </nav>
+</header>
+
+<main class="chat-page">
+
+<div class="chat-panel">
+
+    <div class="chat-head">
+        <h2 id="heading">💬 PeerNex Chat</h2>
+        <p id="subtitle">Client ↔ Service Provider</p>
+        <div class="chat-service" id="serviceInfo">General Chat</div>
+    </div>
+
+    <div class="language-info">
+        <strong id="languageHeading">🌐 Languages known by this student</strong>
+        <div class="language-tags" id="studentLanguages"></div>
+    </div>
+
+    <div class="settings">
+
+        <label id="appLabel">
+            App language
+            <select id="appLanguage">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी — Hindi</option>
+                <option value="kn">ಕನ್ನಡ — Kannada</option>
+                <option value="or">ଓଡ଼ିଆ — Odia</option>
+                <option value="ur">اردو — Urdu</option>
+            </select>
+        </label>
+
+        <label id="speechLabel">
+            Your speaking language
+            <select id="sourceLanguage">
+                <option value="en-IN">English</option>
+                <option value="hi-IN">Hindi</option>
+                <option value="kn-IN">Kannada</option>
+                <option value="or-IN">Odia</option>
+                <option value="ur-IN">Urdu</option>
+            </select>
+        </label>
+
+        <label id="recipientLabel">
+            Recipient's language
+            <select id="targetLanguage">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="kn">Kannada</option>
+                <option value="or">Odia</option>
+                <option value="ur">Urdu</option>
+            </select>
+        </label>
+
+    </div>
+
+    <div class="messages" id="messages" aria-live="polite"></div>
+
+    <div class="composer">
+
+        <input
+            id="messageInput"
+            placeholder="Type your message..."
+            aria-label="Message"
+        >
+
+        <button id="sendButton" onclick="sendMessage()">Send</button>
+
+        <button id="speakButton" onclick="startVoice()">
+            🎙️ Speak
+        </button>
+
+    </div>
+
+    <p class="status-text" id="translationStatus">
+        Recipient language is a preference. Automatic translation is not connected yet.
+    </p>
+
+    <p class="note" id="note">
+        Demo only: messages are saved in this browser. Live messaging between different devices is not connected yet.
+    </p>
+
+</div>
+</main>
+
+<script>
+
+// ===================================
+// 1. STUDENT AND SERVICE DETAILS
+// ===================================
+
+const params = new URLSearchParams(window.location.search);
+
+const studentName = params.get("user") || "PeerNex Student";
+const serviceName = params.get("service") || "General Chat";
+const requestId = params.get("request") || "";
+const amount = params.get("amount") || "";
+const chatType = params.get("type") || "normal";
+
+const profiles = {
+    "Priya Das": {
+        languages: ["Hindi", "English", "Odia", "Urdu"],
+        defaultLanguage: "hi"
+    },
+    "Ananya Sharma": {
+        languages: ["English", "Hindi"],
+        defaultLanguage: "en"
+    },
+    "Rahul Kumar": {
+        languages: ["English", "Hindi"],
+        defaultLanguage: "en"
+    },
+    "AM Sushree Swagatika Sahu": {
+        languages: ["English", "Hindi", "Odia"],
+        defaultLanguage: "en"
+    }
+};
+
+const selectedStudent = profiles[studentName] || {
+    languages: ["Not specified"],
+    defaultLanguage: "en"
+};
+
+// ===================================
+// 2. ELEMENTS
+// ===================================
+
+const $ = id => document.getElementById(id);
+
+const input = $("messageInput");
+const messages = $("messages");
+
+const appLanguage = $("appLanguage");
+const sourceLanguage = $("sourceLanguage");
+const targetLanguage = $("targetLanguage");
+
+// ===================================
+// 3. APP TRANSLATIONS
+// ===================================
+
+const translations = {
+
+en: {
+    home:"Home", request:"Need Help", offer:"Offer Skill",
+    matches:"Matches", history:"My Activity", chat:"Chat",
+    heading:"💬 Chat with", subtitle:"Client ↔ Service Provider",
+    app:"App language", speech:"Your speaking language",
+    recipient:"Recipient's language",
+    languageHeading:"🌐 Languages known by this student",
+    placeholder:"Type your message...", send:"Send",
+    speak:"🎙️ Speak", listen:"🔊 Listen",
+    note:"Demo only: messages are saved in this browser. Live messaging between different devices is not connected yet.",
+    translation:"Recipient language is a preference. Automatic translation is not connected yet.",
+    you:"You", assistant:"PeerNex Assistant",
+    welcome:"Welcome to PeerNex Chat!",
+    empty:"Please type a message or use Speak.",
+    listening:"Listening now. Please speak clearly.",
+    unsupported:"Voice input is not supported by this browser. Try Chrome.",
+    skillSwap:"SkillSwap conversation"
+},
+
+hi: {
+    home:"होम", request:"मदद चाहिए", offer:"कौशल साझा करें",
+    matches:"मैच", history:"मेरी गतिविधियाँ", chat:"चैट",
+    heading:"💬 चैट:", subtitle:"ग्राहक ↔ सेवा प्रदाता",
+    app:"ऐप की भाषा", speech:"आपकी बोलने की भाषा",
+    recipient:"प्राप्तकर्ता की भाषा",
+    languageHeading:"🌐 इस छात्र को आने वाली भाषाएँ",
+    placeholder:"अपना संदेश लिखें...", send:"भेजें",
+    speak:"🎙️ बोलें", listen:"🔊 सुनें",
+    note:"डेमो: संदेश इसी ब्राउज़र में सेव होते हैं। अलग-अलग डिवाइस पर लाइव चैट अभी उपलब्ध नहीं है।",
+    translation:"प्राप्तकर्ता की भाषा एक प्राथमिकता है। स्वचालित अनुवाद अभी उपलब्ध नहीं है।",
+    you:"आप", assistant:"PeerNex सहायक",
+    welcome:"PeerNex चैट में आपका स्वागत है!",
+    empty:"कृपया संदेश लिखें या बोलें।",
+    listening:"सुन रहे हैं। कृपया साफ़ बोलें।",
+    unsupported:"इस ब्राउज़र में वॉइस इनपुट उपलब्ध नहीं है। Chrome आज़माएँ।",
+    skillSwap:"कौशल विनिमय बातचीत"
+},
+
+kn: {
+    home:"ಮುಖಪುಟ", request:"ಸಹಾಯ ಬೇಕು", offer:"ಕೌಶಲ್ಯ ನೀಡಿ",
+    matches:"ಹೊಂದಾಣಿಕೆಗಳು", history:"ನನ್ನ ಚಟುವಟಿಕೆ", chat:"ಚಾಟ್",
+    heading:"💬 ಚಾಟ್:", subtitle:"ಗ್ರಾಹಕ ↔ ಸೇವಾ ಪೂರೈಕೆದಾರ",
+    app:"ಆ್ಯಪ್ ಭಾಷೆ", speech:"ನಿಮ್ಮ ಮಾತನಾಡುವ ಭಾಷೆ",
+    recipient:"ಸ್ವೀಕರಿಸುವವರ ಭಾಷೆ",
+    languageHeading:"🌐 ಈ ವಿದ್ಯಾರ್ಥಿಗೆ ತಿಳಿದಿರುವ ಭಾಷೆಗಳು",
+    placeholder:"ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಬರೆಯಿರಿ...", send:"ಕಳುಹಿಸಿ",
+    speak:"🎙️ ಮಾತನಾಡಿ", listen:"🔊 ಕೇಳಿ",
+    note:"ಡೆಮೊ ಮಾತ್ರ: ಸಂದೇಶಗಳು ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಉಳಿಯುತ್ತವೆ. ಬೇರೆ ಸಾಧನಗಳ ನಡುವಿನ ನೇರ ಚಾಟ್ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ.",
+    translation:"ಸ್ವೀಕರಿಸುವವರ ಭಾಷೆ ಆದ್ಯತೆಯಾಗಿದೆ. ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದ ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ.",
+    you:"ನೀವು", assistant:"PeerNex ಸಹಾಯಕ",
+    welcome:"PeerNex ಚಾಟ್‌ಗೆ ಸ್ವಾಗತ!",
+    empty:"ದಯವಿಟ್ಟು ಸಂದೇಶ ಬರೆಯಿರಿ ಅಥವಾ ಮಾತನಾಡಿ.",
+    listening:"ಕೇಳಲಾಗುತ್ತಿದೆ. ದಯವಿಟ್ಟು ಸ್ಪಷ್ಟವಾಗಿ ಮಾತನಾಡಿ.",
+    unsupported:"ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ. Chrome ಪ್ರಯತ್ನಿಸಿ.",
+    skillSwap:"ಕೌಶಲ್ಯ ವಿನಿಮಯ ಸಂಭಾಷಣೆ"
+},
+
+or: {
+    home:"ମୁଖ୍ୟ ପୃଷ୍ଠା", request:"ସାହାଯ୍ୟ ଦରକାର",
+    offer:"ଦକ୍ଷତା ଦିଅନ୍ତୁ", matches:"ମେଳ",
+    history:"ମୋ କାର୍ଯ୍ୟକଳାପ", chat:"ଚାଟ୍",
+    heading:"💬 ଚାଟ୍:", subtitle:"ଗ୍ରାହକ ↔ ସେବା ପ୍ରଦାନକାରୀ",
+    app:"ଆପ୍ ଭାଷା", speech:"ଆପଣଙ୍କ କଥା କହିବା ଭାଷା",
+    recipient:"ପ୍ରାପ୍ତକର୍ତ୍ତାଙ୍କ ଭାଷା",
+    languageHeading:"🌐 ଏହି ଛାତ୍ରଙ୍କୁ ଜଣା ଥିବା ଭାଷା",
+    placeholder:"ଆପଣଙ୍କ ବାର୍ତ୍ତା ଲେଖନ୍ତୁ...", send:"ପଠାନ୍ତୁ",
+    speak:"🎙️ କୁହନ୍ତୁ", listen:"🔊 ଶୁଣନ୍ତୁ",
+    note:"ଡେମୋ: ବାର୍ତ୍ତାଗୁଡ଼ିକ ଏହି ବ୍ରାଉଜରରେ ସଂରକ୍ଷିତ ହୁଏ। ଅନ୍ୟ ଡିଭାଇସ୍‌ରେ ଲାଇଭ୍ ଚାଟ୍ ଏପର୍ଯ୍ୟନ୍ତ ଉପଲବ୍ଧ ନାହିଁ।",
+    translation:"ପ୍ରାପ୍ତକର୍ତ୍ତାଙ୍କ ଭାଷା ଏକ ପସନ୍ଦ ମାତ୍ର। ସ୍ୱୟଂଚାଳିତ ଅନୁବାଦ ଏପର୍ଯ୍ୟନ୍ତ ଉପଲବ୍ଧ ନାହିଁ।",
+    you:"ଆପଣ", assistant:"PeerNex ସହାୟକ",
+    welcome:"PeerNex ଚାଟ୍‌କୁ ସ୍ୱାଗତ!",
+    empty:"ଦୟାକରି ବାର୍ତ୍ତା ଲେଖନ୍ତୁ କିମ୍ବା କୁହନ୍ତୁ।",
+    listening:"ଶୁଣୁଛୁ। ଦୟାକରି ସ୍ପଷ୍ଟ ଭାବରେ କୁହନ୍ତୁ।",
+    unsupported:"ଏହି ବ୍ରାଉଜରରେ ଭଏସ୍ ଇନ୍‌ପୁଟ୍ ଉପଲବ୍ଧ ନାହିଁ। Chrome ବ୍ୟବହାର କରନ୍ତୁ।",
+    skillSwap:"ଦକ୍ଷତା ବିନିମୟ ବାର୍ତ୍ତାଳାପ"
+},
+
+ur: {
+    home:"صفحہ اول", request:"مدد چاہیے", offer:"ہنر پیش کریں",
+    matches:"مماثلتیں", history:"میری سرگرمیاں", chat:"چیٹ",
+    heading:"💬 چیٹ:", subtitle:"گاہک ↔ سروس فراہم کنندہ",
+    app:"ایپ کی زبان", speech:"آپ کی بولنے کی زبان",
+    recipient:"وصول کنندہ کی زبان",
+    languageHeading:"🌐 اس طالب علم کو آنے والی زبانیں",
+    placeholder:"اپنا پیغام لکھیں...", send:"بھیجیں",
+    speak:"🎙️ بولیں", listen:"🔊 سنیں",
+    note:"ڈیمو: پیغامات اسی براؤزر میں محفوظ ہوتے ہیں۔ مختلف آلات کے درمیان لائیو چیٹ ابھی منسلک نہیں ہے۔",
+    translation:"وصول کنندہ کی زبان ایک ترجیح ہے۔ خودکار ترجمہ ابھی منسلک نہیں ہے۔",
+    you:"آپ", assistant:"PeerNex معاون",
+    welcome:"PeerNex چیٹ میں خوش آمدید!",
+    empty:"براہ کرم پیغام لکھیں یا بولیں۔",
+    listening:"سن رہے ہیں۔ براہ کرم واضح بولیں۔",
+    unsupported:"اس براؤزر میں وائس ان پٹ دستیاب نہیں ہے۔ Chrome آزمائیں۔",
+    skillSwap:"ہنر کے تبادلے کی گفتگو"
+}
+
+};
+
+// ===================================
+// 4. SEPARATE CHAT STORAGE
+// ===================================
+
+const chatKey =
+    "peerNexChat_" +
+    encodeURIComponent(studentName) + "_" +
+    encodeURIComponent(serviceName) + "_" +
+    encodeURIComponent(requestId || chatType);
+
+let chatMessages = [];
+
+try {
+    chatMessages = JSON.parse(localStorage.getItem(chatKey) || "[]");
+    if (!Array.isArray(chatMessages)) chatMessages = [];
+} catch(error) {
+    chatMessages = [];
+}
+
+function saveChat() {
+    localStorage.setItem(chatKey, JSON.stringify(chatMessages));
+}
+
+// ===================================
+// 5. STUDENT INFORMATION
+// ===================================
+
+$("heading").textContent =
+    studentName === "PeerNex Student"
+    ? "💬 PeerNex Chat"
+    : "💬 Chat with " + studentName;
+
+$("serviceInfo").textContent =
+    serviceName +
+    (amount ? " | ₹" + amount : "") +
+    (requestId ? " | " + requestId : "");
+
+function showStudentLanguages() {
+    const container = $("studentLanguages");
+    container.innerHTML = "";
+
+    selectedStudent.languages.forEach(language => {
+        const tag = document.createElement("span");
+        tag.className = "language-tag";
+        tag.textContent = language;
+        container.appendChild(tag);
+    });
+}
+
+// ===================================
+// 6. APP LANGUAGE
+// ===================================
+
+function t(key) {
+    return translations[appLanguage.value][key];
+}
+
+function updateLabels() {
+
+    const d = translations[appLanguage.value];
+
+    document.documentElement.lang = appLanguage.value;
+
+    $("navHome").textContent = d.home;
+    $("navRequest").textContent = d.request;
+    $("navOffer").textContent = d.offer;
+    $("navMatches").textContent = d.matches;
+    $("navHistory").textContent = d.history;
+    $("navChat").textContent = d.chat;
+
+    $("heading").textContent =
+        studentName === "PeerNex Student"
+        ? "💬 PeerNex Chat"
+        : d.heading + " " + studentName;
+
+    $("subtitle").textContent =
+        chatType === "skillswap"
+        ? "🤝 " + d.skillSwap
+        : d.subtitle;
+
+    $("languageHeading").textContent = d.languageHeading;
+
+    $("appLabel").childNodes[0].textContent = d.app + " ";
+    $("speechLabel").childNodes[0].textContent = d.speech + " ";
+    $("recipientLabel").childNodes[0].textContent = d.recipient + " ";
+
+    input.placeholder = d.placeholder;
+    $("sendButton").textContent = d.send;
+    $("speakButton").textContent = d.speak;
+
+    $("note").textContent = d.note;
+    $("translationStatus").textContent = d.translation;
+
+    showStudentLanguages();
+    renderMessages();
+}
+
+// ===================================
+// 7. REMEMBER LANGUAGE SETTINGS
+// ===================================
+
+appLanguage.value =
+    localStorage.getItem("peerNexAppLanguage") || "en";
+
+sourceLanguage.value =
+    localStorage.getItem("peerNexChatSource") || "en-IN";
+
+targetLanguage.value =
+    localStorage.getItem("peerNexChatTarget") ||
+    selectedStudent.defaultLanguage;
+
+appLanguage.addEventListener("change", () => {
+    localStorage.setItem("peerNexAppLanguage", appLanguage.value);
+    updateLabels();
+});
+
+sourceLanguage.addEventListener("change", () => {
+    localStorage.setItem("peerNexChatSource", sourceLanguage.value);
+});
+
+targetLanguage.addEventListener("change", () => {
+    localStorage.setItem("peerNexChatTarget", targetLanguage.value);
+});
+
+// ===================================
+// 8. DISPLAY MESSAGES
+// ===================================
+
+function renderMessages() {
+
+    messages.innerHTML = "";
+
+    if (chatMessages.length === 0) {
+
+        const welcome = document.createElement("div");
+        welcome.className = "message";
+
+        const title = document.createElement("strong");
+        title.textContent = t("assistant");
+
+        const body = document.createElement("p");
+        body.textContent = t("welcome");
+
+        welcome.append(title, body);
+        messages.appendChild(welcome);
+    }
+
+    chatMessages.forEach(message => {
+        addMessageToScreen(message);
+    });
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function addMessageToScreen(message) {
+
+    const bubble = document.createElement("div");
+
+    bubble.className =
+        "message" + (message.mine ? " mine" : "");
+
+    const sender = document.createElement("strong");
+
+    sender.textContent =
+        message.mine ? t("you") : message.sender;
+
+    const body = document.createElement("p");
+    body.textContent = message.text;
+
+    const time = document.createElement("small");
+    time.textContent = message.time || "";
+
+    const listenButton = document.createElement("button");
+    listenButton.type = "button";
+    listenButton.textContent = t("listen");
+
+    listenButton.onclick = () => {
+        speakText(message.text, message.language);
+    };
+
+    bubble.append(sender, body, time, listenButton);
+    messages.appendChild(bubble);
+}
+
+function addMessage(text, mine, language) {
+
+    const message = {
+        text: text,
+        mine: mine,
+        sender: mine ? "You" : studentName,
+        language: language,
+        time: new Date().toLocaleString()
+    };
+
+    chatMessages.push(message);
+    saveChat();
+    addMessageToScreen(message);
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+// ===================================
+// 9. SEND MESSAGE
+// ===================================
+
+function sendMessage() {
+
+    const text = input.value.trim();
+
+    if (!text) {
+        alert(t("empty"));
+        return;
+    }
+
+    addMessage(text, true, sourceLanguage.value);
+
+    input.value = "";
+    input.focus();
+}
+
+input.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
+
+// ===================================
+// 10. TEXT TO SPEECH
+// ===================================
+
+function speakText(text, lang) {
+
+    if (!("speechSynthesis" in window)) {
+        alert("Text-to-speech is not supported by this browser.");
+        return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang || "en-IN";
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+}
+
+// ===================================
+// 11. VOICE TO TEXT
+// ===================================
+
+function startVoice() {
+
+    const Recognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if (!Recognition) {
+        alert(t("unsupported"));
+        return;
+    }
+
+    const recognition = new Recognition();
+
+    recognition.lang = sourceLanguage.value;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+        $("translationStatus").textContent = t("listening");
+    };
+
+    recognition.onresult = event => {
+
+        const spokenText = event.results[0][0].transcript;
+
+        input.value = spokenText;
+        input.focus();
+
+        $("translationStatus").textContent =
+            translations[appLanguage.value].translation;
+    };
+
+    recognition.onerror = () => {
+        alert(t("unsupported"));
+    };
+
+    recognition.onend = () => {
+        $("translationStatus").textContent =
+            translations[appLanguage.value].translation;
+    };
+
+    recognition.start();
+}
+
+// ===================================
+// 12. INITIALIZE CHAT
+// ===================================
+
+showStudentLanguages();
+updateLabels();
+
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

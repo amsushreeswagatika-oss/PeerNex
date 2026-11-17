@@ -1,25 +1,220 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-```
-<title>Skill Matches | PeerNex</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeerNex - Matches</title>
 
 <link rel="stylesheet" href="style.css">
-```
 
+<style>
+.matches-page {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.page-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 30px;
+}
+
+.profile-card {
+    background: #f8faff;
+    border: 1px solid #e0e7ff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.student-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.student-card h3,
+.profile-card h3 {
+    margin-top: 0;
+}
+
+.student-role {
+    color: #6b7280;
+    margin: 5px 0 12px;
+}
+
+.match-score {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #4338ca;
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.availability {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.availability.free {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.availability.busy {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.student-info {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.card-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.card-buttons button {
+    border: none;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #4f46e5;
+    color: white;
+    font-size: 13px;
+}
+
+.card-buttons button:hover {
+    opacity: 0.88;
+}
+
+.card-buttons .secondary {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.card-buttons .danger {
+    background: #dc2626;
+}
+
+.section-heading {
+    margin-bottom: 18px;
+}
+
+.small-note {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+/* =====================================
+   DARK MODE - MATCHES PAGE
+===================================== */
+
+body.dark-mode .matches-page {
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .matches-page h2,
+body.dark-mode .matches-page h3,
+body.dark-mode .matches-page p,
+body.dark-mode .matches-page strong {
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .profile-section,
+body.dark-mode .student-card {
+    background: #1f2937 !important;
+    border: 1px solid #374151 !important;
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .profile-card {
+    background: #273449 !important;
+    border: 1px solid #475569 !important;
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .student-info,
+body.dark-mode .student-role,
+body.dark-mode .small-note {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .match-score {
+    background: #3730a3 !important;
+    color: #e0e7ff !important;
+}
+
+body.dark-mode .availability.free {
+    background: #14532d !important;
+    color: #bbf7d0 !important;
+}
+
+body.dark-mode .availability.busy {
+    background: #7f1d1d !important;
+    color: #fecaca !important;
+}
+
+body.dark-mode .card-buttons .secondary {
+    background: #374151 !important;
+    color: #f9fafb !important;
+}
+
+body.dark-mode .card-buttons button {
+    color: #ffffff !important;
+}
+
+/* Responsive design */
+
+@media(max-width:600px) {
+    .matches-page {
+        padding: 12px;
+    }
+
+    .profile-section,
+    .student-card {
+        padding: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-```
-<div class="logo">PeerNex</div>
+    <h1>PeerNex</h1>
+    <p>Learn. Share. Earn. Grow — Together.</p>
+</header>
 
 <nav>
     <a href="index.html">Home</a>
@@ -27,599 +222,461 @@
     <a href="offer.html">Offer Skill</a>
     <a href="matches.html">Matches</a>
     <a href="feedback.html">Feedback</a>
+    <a href="history.html">My Activity</a>
+    <a href="chat.html">Chat</a>
 </nav>
 
-<button class="login-btn">
-    PeerSafe 🛡️
-</button>
-```
+<main class="matches-page">
 
-</header>
+    <div class="page-heading">
+        <h2>Student Matches</h2>
+        <p>Find the right student to learn, share skills and work together.</p>
+    </div>
 
-<section class="matches-page">
+    <!-- MY PROFILE -->
 
-```
-<div class="section-title">
+    <section class="profile-section">
 
-    <p>PEERNEX AI MATCH</p>
+        <h2 class="section-heading">My Profile</h2>
 
-    <h2>🤖 Students Who Can Help You</h2>
+        <div class="profile-card">
 
-    <p>
-        These students have skills that may match your requirement.
+            <h3>AM Sushree Swagatika Sahu</h3>
+
+            <p class="student-role">Web Developer & Designer</p>
+
+            <p><strong>Rating:</strong> ⭐ 4.9/5</p>
+
+            <p class="student-info">
+                <strong>Skills:</strong>
+                Web Development, HTML, CSS, JavaScript, UI Design
+                <br>
+
+                <strong>Learning / Exchange Modes:</strong>
+                Experience Mode | SkillSwap
+                <br>
+
+                <strong>Service Price:</strong> ₹200
+                <br>
+
+                <strong>Languages:</strong>
+                English, Odia, Hindi
+            </p>
+
+            <div class="card-buttons">
+                <button onclick="viewMyProfile()">View My Profile</button>
+                <button class="secondary" onclick="editMyProfile()">Edit My Profile</button>
+                <button class="secondary" onclick="viewMyPortfolio()">My Portfolio</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BEST MATCHES -->
+
+    <section>
+
+        <h2 class="section-heading">Best Matches for You</h2>
+
+        <p class="small-note">
+            Explore other students and connect with them for services or skill exchange.
+        </p>
+
+        <div class="student-grid">
+
+            <!-- PRIYA -->
+
+            <div class="student-card" data-student="Priya Das">
+
+                <h3>Priya Das</h3>
+
+                <p class="student-role">Graphic Designer</p>
+
+                <span class="match-score">94% Match</span>
+
+                <p><strong>Rating:</strong> ⭐ 4.8/5</p>
+
+                <div class="availability free" id="availability-Priya-Das">
+                    ● Free
+                </div>
+
+                <p class="student-info">
+                    <strong>Skills:</strong>
+                    Graphic Design, Canva, Photoshop, Posters, Branding
+                    <br>
+
+                    <strong>Price:</strong> ₹200
+                    <br>
+
+                    <strong>Languages:</strong>
+                    Hindi, English, Odia, Urdu
+                </p>
+
+                <div class="card-buttons">
+                    <button onclick="viewProfile('Priya Das')">View Profile</button>
+                    <button class="secondary" onclick="viewPortfolio('Priya Das')">Portfolio</button>
+                    <button onclick="contactStudent('Priya Das')">Contact</button>
+                    <button onclick="requestService('Priya Das','Graphic Design',200)">Request Service</button>
+                    <button onclick="requestSkillSwap('Priya Das','Graphic Design')">SkillSwap</button>
+                    <button onclick="makePayment('Priya Das','Graphic Design',200)">Pay</button>
+                    <button class="secondary" onclick="reportStudent('Priya Das')">Report</button>
+                    <button class="danger" onclick="blockStudent('Priya Das')">Block</button>
+                </div>
+
+            </div>
+
+            <!-- ANANYA -->
+
+            <div class="student-card" data-student="Ananya Sharma">
+
+                <h3>Ananya Sharma</h3>
+
+                <p class="student-role">Content Writer</p>
+
+                <span class="match-score">91% Match</span>
+
+                <p><strong>Rating:</strong> ⭐ 4.7/5</p>
+
+                <div class="availability free" id="availability-Ananya-Sharma">
+                    ● Free
+                </div>
+
+                <p class="student-info">
+                    <strong>Skills:</strong>
+                    Content Writing, Blog Writing, Copywriting, Editing
+                    <br>
+
+                    <strong>Price:</strong> ₹150
+                    <br>
+
+                    <strong>Languages:</strong>
+                    English, Hindi
+                </p>
+
+                <div class="card-buttons">
+                    <button onclick="viewProfile('Ananya Sharma')">View Profile</button>
+                    <button class="secondary" onclick="viewPortfolio('Ananya Sharma')">Portfolio</button>
+                    <button onclick="contactStudent('Ananya Sharma')">Contact</button>
+                    <button onclick="requestService('Ananya Sharma','Content Writing',150)">Request Service</button>
+                    <button onclick="requestSkillSwap('Ananya Sharma','Content Writing')">SkillSwap</button>
+                    <button onclick="makePayment('Ananya Sharma','Content Writing',150)">Pay</button>
+                    <button class="secondary" onclick="reportStudent('Ananya Sharma')">Report</button>
+                    <button class="danger" onclick="blockStudent('Ananya Sharma')">Block</button>
+                </div>
+
+            </div>
+
+            <!-- RAHUL -->
+
+            <div class="student-card" data-student="Rahul Kumar">
+
+                <h3>Rahul Kumar</h3>
+
+                <p class="student-role">Video Editor</p>
+
+                <span class="match-score">88% Match</span>
+
+                <p><strong>Rating:</strong> ⭐ 4.6/5</p>
+
+                <div class="availability free" id="availability-Rahul-Kumar">
+                    ● Free
+                </div>
+
+                <p class="student-info">
+                    <strong>Skills:</strong>
+                    Video Editing, Premiere Pro, Reels, YouTube
+                    <br>
+
+                    <strong>Price:</strong> ₹250
+                    <br>
+
+                    <strong>Languages:</strong>
+                    English, Hindi
+                </p>
+
+                <div class="card-buttons">
+                    <button onclick="viewProfile('Rahul Kumar')">View Profile</button>
+                    <button class="secondary" onclick="viewPortfolio('Rahul Kumar')">Portfolio</button>
+                    <button onclick="contactStudent('Rahul Kumar')">Contact</button>
+                    <button onclick="requestService('Rahul Kumar','Video Editing',250)">Request Service</button>
+                    <button onclick="requestSkillSwap('Rahul Kumar','Video Editing')">SkillSwap</button>
+                    <button onclick="makePayment('Rahul Kumar','Video Editing',250)">Pay</button>
+                    <button class="secondary" onclick="reportStudent('Rahul Kumar')">Report</button>
+                    <button class="danger" onclick="blockStudent('Rahul Kumar')">Block</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <p class="small-note">
+        Provider availability changes when a request is accepted or active.
+        A pending request alone does not make a provider Busy.
     </p>
 
-</div>
-
-
-<div id="requestSummary" class="request-summary">
-
-    <strong>Your Requirement</strong>
-
-    <p id="needText">
-        Looking for a student who can help with your task.
-    </p>
-
-    <span>🤖 AI Match</span>
-    <span>🛡️ PeerSafe</span>
-    <span>⭐ Student Community</span>
-
-</div>
-
-
-<div class="match-list">
-
-
-    <!-- ============================= -->
-    <!-- YOUR PROFILE -->
-    <!-- ============================= -->
-
-    <div class="match-card">
-
-        <div class="match-top">
-
-            <div class="student-avatar">
-                AS
-            </div>
-
-            <div class="student-info">
-
-                <h3>
-                    AM Sushree Swagatika Sahu
-                </h3>
-
-                <p>
-                    Web Developer & Designer
-                </p>
-
-                <div class="rating">
-                    ⭐⭐⭐⭐⭐ 4.9/5
-                </div>
-
-            </div>
-
-            <div class="match-score">
-
-                <strong>97%</strong>
-
-                <small>Match</small>
-
-            </div>
-
-        </div>
-
-
-        <div class="skills">
-
-            <span>Web Development</span>
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>UI Design</span>
-
-        </div>
-
-
-        <div class="match-reason">
-
-            <strong>
-                🤖 Why this is a good match
-            </strong>
-
-            <p>
-                Your web development and design skills closely
-                match the student's requirement. You also support
-                SkillSwap and student-friendly services.
-            </p>
-
-        </div>
-
-
-        <div class="service-options">
-
-            <span>🏆 Experience Mode</span>
-            <span>🔄 SkillSwap</span>
-            <span>💰 ₹200</span>
-
-        </div>
-
-
-        <div class="match-buttons">
-
-            <button onclick="viewProfile('AM Sushree Swagatika Sahu')">
-                📁 View Profile
-            </button>
-
-            <button onclick="connectStudent('AM Sushree Swagatika Sahu')">
-                🔄 Request SkillSwap
-            </button>
-
-            <button onclick="openPayment('AM Sushree Swagatika Sahu', 'Web Development', 200)">
-                💳 Pay ₹200
-            </button>
-
-            <button onclick="reportStudent('AM Sushree Swagatika Sahu')">
-                🚨 Report
-            </button>
-
-            <button onclick="blockStudent('AM Sushree Swagatika Sahu')">
-                🚫 Block
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ============================= -->
-    <!-- PRIYA -->
-    <!-- ============================= -->
-
-    <div class="match-card">
-
-        <div class="match-top">
-
-            <div class="student-avatar">
-                PD
-            </div>
-
-            <div class="student-info">
-
-                <h3>
-                    Priya Das
-                </h3>
-
-                <p>
-                    Graphic Designer
-                </p>
-
-                <div class="rating">
-                    ⭐⭐⭐⭐⭐ 4.8/5
-                </div>
-
-            </div>
-
-            <div class="match-score">
-
-                <strong>94%</strong>
-
-                <small>Match</small>
-
-            </div>
-
-        </div>
-
-
-        <div class="skills">
-
-            <span>Graphic Design</span>
-            <span>Canva</span>
-            <span>Photoshop</span>
-            <span>Posters</span>
-            <span>Branding</span>
-
-        </div>
-
-
-        <div class="match-reason">
-
-            <strong>
-                🤖 Why this is a good match
-            </strong>
-
-            <p>
-                Priya has strong graphic design skills and can
-                help with posters, social media designs and
-                creative projects.
-            </p>
-
-        </div>
-
-
-        <div class="service-options">
-
-            <span>🏆 Experience Mode</span>
-            <span>🔄 SkillSwap</span>
-            <span>💰 ₹200</span>
-
-        </div>
-
-
-        <div class="match-buttons">
-
-            <button onclick="viewProfile('Priya Das')">
-                📁 View Portfolio
-            </button>
-
-            <button onclick="connectStudent('Priya Das')">
-                🤝 Request SkillSwap
-            </button>
-
-            <button onclick="openPayment('Priya Das', 'Graphic Design', 200)">
-                💳 Pay ₹200
-            </button>
-
-            <button onclick="reportStudent('Priya Das')">
-                🚨 Report
-            </button>
-
-            <button onclick="blockStudent('Priya Das')">
-                🚫 Block
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ============================= -->
-    <!-- ANANYA -->
-    <!-- ============================= -->
-
-    <div class="match-card">
-
-        <div class="match-top">
-
-            <div class="student-avatar">
-                AS
-            </div>
-
-            <div class="student-info">
-
-                <h3>
-                    Ananya Sharma
-                </h3>
-
-                <p>
-                    Content Writer
-                </p>
-
-                <div class="rating">
-                    ⭐⭐⭐⭐☆ 4.7/5
-                </div>
-
-            </div>
-
-            <div class="match-score">
-
-                <strong>91%</strong>
-
-                <small>Match</small>
-
-            </div>
-
-        </div>
-
-
-        <div class="skills">
-
-            <span>Content Writing</span>
-            <span>Blog Writing</span>
-            <span>Copywriting</span>
-            <span>Editing</span>
-
-        </div>
-
-
-        <div class="match-reason">
-
-            <strong>
-                🤖 Why this is a good match
-            </strong>
-
-            <p>
-                Ananya can help create articles, captions,
-                blogs and other written content for student
-                projects.
-            </p>
-
-        </div>
-
-
-        <div class="service-options">
-
-            <span>🏆 Experience Mode</span>
-            <span>🔄 SkillSwap</span>
-            <span>💰 ₹150</span>
-
-        </div>
-
-
-        <div class="match-buttons">
-
-            <button onclick="viewProfile('Ananya Sharma')">
-                📁 View Portfolio
-            </button>
-
-            <button onclick="connectStudent('Ananya Sharma')">
-                🤝 Request SkillSwap
-            </button>
-
-            <button onclick="openPayment('Ananya Sharma', 'Content Writing', 150)">
-                💳 Pay ₹150
-            </button>
-
-            <button onclick="reportStudent('Ananya Sharma')">
-                🚨 Report
-            </button>
-
-            <button onclick="blockStudent('Ananya Sharma')">
-                🚫 Block
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ============================= -->
-    <!-- RAHUL -->
-    <!-- ============================= -->
-
-    <div class="match-card">
-
-        <div class="match-top">
-
-            <div class="student-avatar">
-                RK
-            </div>
-
-            <div class="student-info">
-
-                <h3>
-                    Rahul Kumar
-                </h3>
-
-                <p>
-                    Video Editor
-                </p>
-
-                <div class="rating">
-                    ⭐⭐⭐⭐☆ 4.6/5
-                </div>
-
-            </div>
-
-            <div class="match-score">
-
-                <strong>88%</strong>
-
-                <small>Match</small>
-
-            </div>
-
-        </div>
-
-
-        <div class="skills">
-
-            <span>Video Editing</span>
-            <span>Premiere Pro</span>
-            <span>Reels</span>
-            <span>YouTube</span>
-
-        </div>
-
-
-        <div class="match-reason">
-
-            <strong>
-                🤖 Why this is a good match
-            </strong>
-
-            <p>
-                Rahul can help students edit videos, reels,
-                presentations and other creative projects.
-            </p>
-
-        </div>
-
-
-        <div class="service-options">
-
-            <span>🏆 Experience Mode</span>
-            <span>🔄 SkillSwap</span>
-            <span>💰 ₹250</span>
-
-        </div>
-
-
-        <div class="match-buttons">
-
-            <button onclick="viewProfile('Rahul Kumar')">
-                📁 View Portfolio
-            </button>
-
-            <button onclick="connectStudent('Rahul Kumar')">
-                🤝 Request SkillSwap
-            </button>
-
-            <button onclick="openPayment('Rahul Kumar', 'Video Editing', 250)">
-                💳 Pay ₹250
-            </button>
-
-            <button onclick="reportStudent('Rahul Kumar')">
-                🚨 Report
-            </button>
-
-            <button onclick="blockStudent('Rahul Kumar')">
-                🚫 Block
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-```
-
-</section>
+</main>
 
 <footer>
-
-```
-<div>
-
-    <strong>PeerNex</strong>
-
-    <p>
-        Learn. Share. Earn. Grow — Together.
-    </p>
-
-</div>
-
-<p>
-    Built by <strong>SYNORA</strong> 💙
-</p>
-```
-
+    <p>© 2026 PeerNex | Developed by SYNORA</p>
 </footer>
 
 <script>
+const students = [
+    "Priya Das",
+    "Ananya Sharma",
+    "Rahul Kumar"
+];
 
-/* ===================================
-   GET USER REQUEST
-=================================== */
-
-const params = new URLSearchParams(
-    window.location.search
-);
-
-const need = params.get("need");
-
-if (need) {
-
-    document.getElementById("needText").textContent =
-        "You are looking for help with: " + need;
-
+function getRequests() {
+    try {
+        return JSON.parse(localStorage.getItem("peernexServiceRequests")) || [];
+    } catch (error) {
+        return [];
+    }
 }
 
+function saveRequests(requests) {
+    localStorage.setItem(
+        "peernexServiceRequests",
+        JSON.stringify(requests)
+    );
+}
 
-/* ===================================
-   PAYMENT
-=================================== */
+function getBlockedStudents() {
+    try {
+        return JSON.parse(localStorage.getItem("peernexBlockedStudents")) || [];
+    } catch (error) {
+        return [];
+    }
+}
 
-function openPayment(
-    provider,
-    service,
-    amount
-) {
+function updateAvailability() {
+
+    const requests = getRequests();
+    const blocked = getBlockedStudents();
+
+    students.forEach(student => {
+
+        const card = document.querySelector(
+            `[data-student="${student}"]`
+        );
+
+        if (card && blocked.includes(student)) {
+            card.style.display = "none";
+            return;
+        }
+
+        const activeStatuses = [
+            "Accepted",
+            "Payment",
+            "SecureHold",
+            "In Progress",
+            "Under Review"
+        ];
+
+        const isBusy = requests.some(request =>
+            request.provider === student &&
+            activeStatuses.includes(request.status)
+        );
+
+        const availability = document.getElementById(
+            "availability-" + student.replaceAll(" ", "-")
+        );
+
+        if (availability) {
+
+            if (isBusy) {
+                availability.className = "availability busy";
+                availability.textContent = "● Busy";
+            } else {
+                availability.className = "availability free";
+                availability.textContent = "● Free";
+            }
+
+        }
+
+    });
+}
+
+// CONTACT
+
+function contactStudent(student) {
 
     window.location.href =
-        "payment.html?provider=" +
-        encodeURIComponent(provider) +
-        "&service=" +
-        encodeURIComponent(service) +
-        "&amount=" +
-        amount;
+        "chat.html?user=" + encodeURIComponent(student);
 
 }
 
+// REQUEST SERVICE
 
-/* ===================================
-   VIEW PROFILE
-=================================== */
+function requestService(student, service, amount) {
 
-function viewProfile(name) {
+    const requests = getRequests();
+
+    const requestId = "REQ-" + Date.now();
+
+    const newRequest = {
+        id: requestId,
+        provider: student,
+        service: service,
+        amount: amount,
+        status: "Request Sent",
+        createdAt: new Date().toISOString(),
+        client: "AM Sushree Swagatika Sahu"
+    };
+
+    requests.push(newRequest);
+
+    saveRequests(requests);
+
+    updateAvailability();
 
     alert(
-        "👤 Profile\n\n" +
-        name +
-        "\n\nThis profile contains the student's skills, experience, portfolio and ratings."
+        "Your request has been sent to " + student +
+        ".\n\nThe provider will become Busy only after accepting your request."
+    );
+
+    window.location.href =
+        "chat.html?user=" + encodeURIComponent(student) +
+        "&service=" + encodeURIComponent(service) +
+        "&amount=" + amount +
+        "&request=" + requestId;
+
+}
+
+// SKILLSWAP
+
+function requestSkillSwap(student, service) {
+
+    window.location.href =
+        "chat.html?user=" + encodeURIComponent(student) +
+        "&service=" + encodeURIComponent(service) +
+        "&type=skillswap";
+
+}
+
+// PAYMENT
+
+function makePayment(student, service, amount) {
+
+    window.location.href =
+        "payment.html?provider=" + encodeURIComponent(student) +
+        "&service=" + encodeURIComponent(service) +
+        "&amount=" + amount;
+
+}
+
+// PROFILE
+
+function viewProfile(student) {
+
+    alert(
+        "You selected " + student +
+        "'s profile.\n\nThe full profile page can be connected here when it is available."
     );
 
 }
 
-
-/* ===================================
-   SKILL SWAP
-=================================== */
-
-function connectStudent(name) {
+function viewPortfolio(student) {
 
     alert(
-        "🔄 SkillSwap Request Sent!\n\n" +
-        "Your SkillSwap request has been sent to " +
-        name +
-        "."
+        "You selected " + student +
+        "'s portfolio.\n\nPortfolio samples can be viewed here when the portfolio page is connected."
     );
 
 }
 
+function viewMyProfile() {
+    alert("This is your PeerNex profile.");
+}
 
-/* ===================================
-   REPORT
-=================================== */
+function editMyProfile() {
+    alert("Your profile editing page can be connected here.");
+}
 
-function reportStudent(name) {
+function viewMyPortfolio() {
+    alert("This is your portfolio section.");
+}
 
-    const confirmReport =
-        confirm(
-            "🚨 Report " +
-            name +
-            "?\n\n" +
-            "This will send a safety report to PeerNex."
-        );
+// REPORT
 
-    if (confirmReport) {
+function reportStudent(student) {
 
-        alert(
-            "✅ Report submitted.\n\n" +
-            "PeerNex will review this report."
-        );
+    const reason = prompt(
+        "Why are you reporting " + student + "?"
+    );
 
+    if (!reason || !reason.trim()) {
+        return;
     }
+
+    let reports = [];
+
+    try {
+        reports = JSON.parse(localStorage.getItem("peernexReports")) || [];
+    } catch (error) {
+        reports = [];
+    }
+
+    reports.push({
+        student: student,
+        reason: reason.trim(),
+        date: new Date().toISOString()
+    });
+
+    localStorage.setItem(
+        "peernexReports",
+        JSON.stringify(reports)
+    );
+
+    alert(
+        "Your report has been saved. Thank you for helping keep PeerNex safe."
+    );
 
 }
 
+// BLOCK
 
-/* ===================================
-   BLOCK
-=================================== */
+function blockStudent(student) {
 
-function blockStudent(name) {
+    const confirmBlock = confirm(
+        "Are you sure you want to block " + student +
+        "?\n\nTheir profile will be hidden from your Matches page on this browser."
+    );
 
-    const confirmBlock =
-        confirm(
-            "🚫 Block " +
-            name +
-            "?"
-        );
-
-    if (confirmBlock) {
-
-        alert(
-            "✅ " +
-            name +
-            " has been blocked."
-        );
-
+    if (!confirmBlock) {
+        return;
     }
 
+    const blocked = getBlockedStudents();
+
+    if (!blocked.includes(student)) {
+        blocked.push(student);
+    }
+
+    localStorage.setItem(
+        "peernexBlockedStudents",
+        JSON.stringify(blocked)
+    );
+
+    updateAvailability();
+
+    alert(student + " has been blocked on this browser.");
+
 }
+
+// INITIALIZE
+
+updateAvailability();
 
 </script>
 
-</body>
+<!-- Shared theme and navigation script -->
+<script src="script.js"></script>
 
+</body>
 </html>
+
+

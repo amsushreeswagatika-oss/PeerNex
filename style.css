@@ -1,3 +1,13 @@
+
+/* =========================================
+   PEERNEX - COMPLETE STYLE.CSS
+   Light Mode + Dark Mode
+   Home | Request | Matches | Activity | Chat
+   Developed by SYNORA
+========================================= */
+
+/* ========== GLOBAL ========== */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,9 +23,21 @@ body {
     background: #f7f9fc;
     color: #172033;
     line-height: 1.6;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* NAVIGATION */
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ========== HEADER & NAVIGATION ========== */
 
 header {
     width: 100%;
@@ -23,7 +45,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
+    gap: 20px;
+    background: #ffffff;
     border-bottom: 1px solid #e9edf3;
     position: sticky;
     top: 0;
@@ -38,6 +61,7 @@ header {
 
 nav {
     display: flex;
+    align-items: center;
     gap: 30px;
 }
 
@@ -45,6 +69,7 @@ nav a {
     text-decoration: none;
     color: #4b5563;
     font-weight: 600;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
@@ -57,12 +82,50 @@ nav a:hover {
     color: white;
     padding: 11px 20px;
     border-radius: 10px;
-    cursor: pointer;
     font-weight: 600;
 }
 
+/* ========== COMMON BUTTONS ========== */
 
-/* HERO */
+.hero-buttons button,
+.cta button,
+.find-match-btn,
+.match-buttons button,
+button.primary,
+.primary-btn {
+    border: none;
+    padding: 13px 22px;
+    border-radius: 10px;
+    background: #4f46e5;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.hero-buttons button:hover,
+.cta button:hover,
+.find-match-btn:hover,
+.match-buttons button:hover,
+button.primary:hover,
+.primary-btn:hover,
+.login-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+button.secondary,
+.secondary-btn {
+    background: #eef2ff;
+    color: #4338ca;
+    border: 1px solid #c7d2fe;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+/* ========== HOME HERO ========== */
 
 .hero {
     min-height: 620px;
@@ -107,28 +170,6 @@ nav a:hover {
     gap: 15px;
     flex-wrap: wrap;
 }
-
-.hero-buttons button,
-.cta button {
-    border: none;
-    padding: 15px 25px;
-    border-radius: 12px;
-    background: #4f46e5;
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.hero-buttons button:hover,
-.cta button:hover,
-.login-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-
-/* HERO CARD */
 
 .hero-card {
     width: 360px;
@@ -175,8 +216,7 @@ nav a:hover {
     color: #7b8494;
 }
 
-
-/* FEATURES */
+/* ========== FEATURES ========== */
 
 .features,
 .how {
@@ -233,8 +273,7 @@ nav a:hover {
     color: #687386;
 }
 
-
-/* HOW IT WORKS */
+/* ========== HOW IT WORKS ========== */
 
 .how {
     background: #eef2ff;
@@ -273,8 +312,7 @@ nav a:hover {
     color: #687386;
 }
 
-
-/* CTA */
+/* ========== CALL TO ACTION ========== */
 
 .cta {
     padding: 90px 7%;
@@ -298,8 +336,7 @@ nav a:hover {
     color: #4f46e5;
 }
 
-
-/* FOOTER */
+/* ========== FOOTER ========== */
 
 footer {
     padding: 30px 7%;
@@ -314,66 +351,7 @@ footer p {
     color: #9ca3af;
 }
 
-
-/* MOBILE */
-
-@media (max-width: 900px) {
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .description {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .steps {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    header {
-        padding: 15px 5%;
-    }
-
-    nav {
-        display: none;
-    }
-
-    .hero {
-        padding: 60px 5%;
-    }
-
-    .hero-card {
-        width: 100%;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-title h2 {
-        font-size: 30px;
-    }
-
-    footer {
-        flex-direction: column;
-    }
-}
-/* REQUEST PAGE */
+/* ========== REQUEST PAGE ========== */
 
 .request-page {
     min-height: 75vh;
@@ -405,7 +383,6 @@ footer p {
     border: 1px solid #d9deea;
     border-radius: 10px;
     font-size: 15px;
-    font-family: Arial, sans-serif;
     outline: none;
 }
 
@@ -423,20 +400,10 @@ footer p {
     width: 100%;
     margin-top: 28px;
     padding: 15px;
-    border: none;
-    border-radius: 12px;
-    background: #4f46e5;
-    color: white;
     font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
 }
 
-.find-match-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-/* AI MATCHES PAGE */
+/* ========== MATCHES PAGE ========== */
 
 .matches-page {
     min-height: 75vh;
@@ -502,6 +469,7 @@ footer p {
 .student-avatar {
     width: 60px;
     height: 60px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: #4f46e5;
     color: white;
@@ -602,13 +570,6 @@ footer p {
 
 .match-buttons button {
     flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #4f46e5;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
 }
 
 .match-buttons button:first-child {
@@ -616,14 +577,558 @@ footer p {
     color: #4338ca;
 }
 
-.match-buttons button:hover {
-    opacity: 0.85;
+/* ========== PROFILE / AVAILABILITY ========== */
+
+.profile-section,
+.profile-card,
+.student-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.student-role {
+    color: #596579;
+}
+
+.availability,
+.availability-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.availability.free,
+.availability-badge.free {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.availability.busy,
+.availability-badge.busy {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ========== MY ACTIVITY / HISTORY ========== */
+
+.history-page {
+    min-height: 75vh;
+    padding: 50px 7%;
+    background: #f7f9fc;
+}
+
+.history-section {
+    margin: 30px auto;
+    max-width: 1100px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.history-stat,
+.money-card,
+.transaction-card,
+.work-request-card,
+.history-card,
+.history-info {
+    background: white;
+    color: #172033;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(40, 50, 90, 0.05);
+}
+
+.history-stat small {
+    color: #6b7280;
+}
+
+.money-card p,
+.transaction-card p,
+.history-info p {
+    color: #596579;
+}
+
+.transaction-card h3,
+.work-request-card h3,
+.history-card h3 {
+    margin-bottom: 8px;
+}
+
+.amount-positive {
+    color: #16a34a;
+    font-weight: 800;
+}
+
+.amount-negative {
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.completed,
+.status-completed {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-pending {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ========== SECUREHOLD / PAYMENT TIMELINE ========== */
+
+.payment-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.timeline-step {
+    padding: 8px 12px;
+    border-radius: 9px;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.securehold-note {
+    margin-top: 15px;
+    padding: 14px;
+    background: #eef2ff;
+    border-left: 4px solid #4f46e5;
+    border-radius: 10px;
+}
+
+/* ========== CHAT PAGE ========== */
+
+.chat-page {
+    max-width: 100%;
+    min-height: 75vh;
+    padding: 35px 20px;
+    background: #f7f9fc;
+}
+
+.chat-panel {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(40, 50, 90, 0.1);
+}
+
+.chat-head {
+    padding: 22px;
+    background: #4f46e5;
+    color: white;
+}
+
+.chat-head h1,
+.chat-head h2,
+.chat-head h3,
+.chat-head p {
+    color: white;
+}
+
+.settings,
+.chat-settings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9ff;
+}
+
+.settings label,
+.chat-settings label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.chat-box,
+.message-panel {
+    min-height: 300px;
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 20px;
+    background: #ffffff;
+}
+
+.message,
+.received-message,
+.other-message,
+.sent-message,
+.my-message {
+    max-width: 80%;
+    padding: 11px 15px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    overflow-wrap: anywhere;
+}
+
+.message,
+.received-message,
+.other-message {
+    background: #f1f5f9;
+    color: #172033;
+    margin-right: auto;
+}
+
+.sent-message,
+.my-message {
+    background: #4f46e5;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input-area,
+.chat-composer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px;
+    border-top: 1px solid #e5e7eb;
+    background: white;
+}
+
+.chat-input-area input,
+.chat-composer input,
+.chat-composer textarea {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+}
+
+.chat-input-area button,
+.chat-composer button {
+    border: none;
+    background: #4f46e5;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.chat-panel input,
+.chat-panel select,
+.chat-panel textarea {
+    max-width: 100%;
+}
+
+/* ========== GENERAL FORM ELEMENTS ========== */
+
+input,
+textarea,
+select {
+    max-width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    background: white;
+    color: #172033;
+    font-size: 15px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.12);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode {
+    background: #111827 !important;
+    color: #f3f4f6 !important;
+}
+
+/* Header and navigation */
+
+body.dark-mode header {
+    background: #111827 !important;
+    color: #f9fafb !important;
+    border-color: #374151 !important;
+}
+
+body.dark-mode nav a {
+    color: #e5e7eb !important;
+}
+
+body.dark-mode nav a:hover {
+    color: #a5b4fc !important;
+}
+
+/* Main backgrounds */
+
+body.dark-mode .hero,
+body.dark-mode .features,
+body.dark-mode .how,
+body.dark-mode .request-page,
+body.dark-mode .matches-page,
+body.dark-mode .history-page,
+body.dark-mode .chat-page,
+body.dark-mode main {
+    background: #111827 !important;
+    color: #f3f4f6 !important;
+}
+
+/* Cards and panels */
+
+body.dark-mode .hero-card,
+body.dark-mode .feature-card,
+body.dark-mode .step,
+body.dark-mode .request-form,
+body.dark-mode .match-card,
+body.dark-mode .request-summary,
+body.dark-mode .profile-section,
+body.dark-mode .profile-card,
+body.dark-mode .student-card,
+body.dark-mode .history-stat,
+body.dark-mode .money-card,
+body.dark-mode .transaction-card,
+body.dark-mode .work-request-card,
+body.dark-mode .history-card,
+body.dark-mode .history-info,
+body.dark-mode .chat-panel,
+body.dark-mode .settings,
+body.dark-mode .chat-settings,
+body.dark-mode .chat-box,
+body.dark-mode .message-panel {
+    background: #1f2937 !important;
+    color: #f3f4f6 !important;
+    border-color: #374151 !important;
+}
+
+/* General text */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode label,
+body.dark-mode strong {
+    color: #f9fafb;
+}
+
+body.dark-mode p,
+body.dark-mode small,
+body.dark-mode .description,
+body.dark-mode .student-role,
+body.dark-mode .student-info p,
+body.dark-mode .rating,
+body.dark-mode .match-reason p,
+body.dark-mode .history-stat small,
+body.dark-mode .money-card p,
+body.dark-mode .transaction-card p,
+body.dark-mode .history-info p {
+    color: #d1d5db;
+}
+
+/* Match details */
+
+body.dark-mode .match-reason,
+body.dark-mode .skills span,
+body.dark-mode .service-options span {
+    background: #374151 !important;
+    color: #f3f4f6 !important;
+}
+
+body.dark-mode .match-reason strong,
+body.dark-mode .match-score strong {
+    color: #a5b4fc !important;
+}
+
+/* Chat */
+
+body.dark-mode .chat-head {
+    background: #3730a3 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .chat-head h1,
+body.dark-mode .chat-head h2,
+body.dark-mode .chat-head h3,
+body.dark-mode .chat-head p {
+    color: #ffffff !important;
+}
+
+body.dark-mode .message,
+body.dark-mode .received-message,
+body.dark-mode .other-message {
+    background: #374151 !important;
+    color: #f9fafb !important;
+}
+
+body.dark-mode .sent-message,
+body.dark-mode .my-message {
+    background: #4338ca !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .chat-input-area,
+body.dark-mode .chat-composer {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+}
+
+/* Inputs and dropdowns */
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: #111827 !important;
+    color: #f9fafb !important;
+    border-color: #4b5563 !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #9ca3af !important;
+}
+
+/* Buttons */
+
+body.dark-mode button.secondary,
+body.dark-mode .secondary-btn,
+body.dark-mode .match-buttons button:first-child {
+    background: #374151 !important;
+    color: #f9fafb !important;
+    border-color: #4b5563 !important;
+}
+
+/* SecureHold information */
+
+body.dark-mode .securehold-note,
+body.dark-mode .timeline-step {
+    background: #374151 !important;
+    color: #c7d2fe !important;
+    border-color: #6366f1 !important;
+}
+
+/* Footer */
+
+body.dark-mode footer {
+    background: #030712 !important;
+    color: #f9fafb !important;
+}
+
+body.dark-mode footer p {
+    color: #9ca3af !important;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 600px) {
+    header {
+        padding: 15px 5%;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 5%;
+    }
+
+    .hero-card {
+        width: 100%;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+
+    .cta h2 {
+        font-size: 32px;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+
+    .matches-page,
+    .history-page {
+        padding: 35px 5%;
+    }
 
     .match-top {
         align-items: flex-start;
+        flex-wrap: wrap;
     }
 
     .match-score {
@@ -634,4 +1139,48 @@ footer p {
         flex-direction: column;
     }
 
+    .settings,
+    .chat-settings {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-input-area,
+    .chat-composer {
+        flex-wrap: wrap;
+    }
+
+    .chat-input-area input,
+    .chat-composer input,
+    .chat-composer textarea {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+    .request-form {
+        padding: 22px;
+    }
+
+    .payment-timeline {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
+
+/* ========== SMOOTH THEME TRANSITION ========== */
+
+body,
+header,
+section,
+main,
+article,
+div,
+input,
+textarea,
+select,
+button {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,125 @@
     <title>Feedback | PeerNex</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* FEEDBACK PAGE */
+
+        .request-page {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .request-form {
+            max-width: 650px;
+            margin: auto;
+            padding: 30px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .request-form label {
+            display: block;
+            margin: 16px 0 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .request-form input,
+        .request-form select,
+        .request-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background: #ffffff;
+            color: #111827;
+        }
+
+        .request-form textarea {
+            resize: vertical;
+        }
+
+        .find-match-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+            border: none;
+            border-radius: 9px;
+            background: #4f46e5;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .find-match-btn:hover {
+            background: #4338ca;
+        }
+
+        /* DARK MODE */
+
+        body.dark-mode .request-page {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .request-page h2,
+        body.dark-mode .request-page p {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .request-form {
+            background: #1f2937 !important;
+            border-color: #374151 !important;
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .request-form label {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .request-form input,
+        body.dark-mode .request-form select,
+        body.dark-mode .request-form textarea {
+            background: #111827 !important;
+            color: #f9fafb !important;
+            border-color: #4b5563 !important;
+        }
+
+        body.dark-mode .request-form input::placeholder,
+        body.dark-mode .request-form textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .request-form select option {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark-mode .section-title p {
+            color: #cbd5e1;
+        }
+
+        @media(max-width: 600px) {
+            .request-page {
+                padding: 12px;
+            }
+
+            .request-form {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -21,6 +141,9 @@
         <a href="request.html">Need Help</a>
         <a href="offer.html">Offer Skill</a>
         <a href="matches.html">Matches</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="history.html">My Activity</a>
+        <a href="chat.html">Chat</a>
     </nav>
 
     <button class="login-btn">
@@ -28,7 +151,6 @@
     </button>
 
 </header>
-
 
 <section class="request-page">
 
@@ -44,10 +166,9 @@
 
     </div>
 
-
     <div class="request-form">
 
-        <label>Student Name</label>
+        <label for="studentName">Student Name</label>
 
         <input
             type="text"
@@ -55,32 +176,25 @@
             value="Ananya Sharma"
         >
 
-
-        <label>Your Rating</label>
+        <label for="rating">Your Rating</label>
 
         <select id="rating">
 
             <option value="5">⭐⭐⭐⭐⭐ — Excellent</option>
-
             <option value="4">⭐⭐⭐⭐ — Very Good</option>
-
             <option value="3">⭐⭐⭐ — Good</option>
-
             <option value="2">⭐⭐ — Needs Improvement</option>
-
             <option value="1">⭐ — Poor</option>
 
         </select>
 
-
-        <label>Write your feedback</label>
+        <label for="feedback">Write your feedback</label>
 
         <textarea
             id="feedback"
             rows="6"
             placeholder="Example: Very helpful and completed the poster before the deadline!"
         ></textarea>
-
 
         <button
             class="find-match-btn"
@@ -93,17 +207,14 @@
 
 </section>
 
-
 <footer>
 
     <div>
-
         <strong>PeerNex</strong>
 
         <p>
             Learn. Share. Earn. Grow — Together.
         </p>
-
     </div>
 
     <p>
@@ -111,7 +222,6 @@
     </p>
 
 </footer>
-
 
 <script>
 
@@ -126,7 +236,6 @@ function submitFeedback() {
     const feedback =
         document.getElementById("feedback").value;
 
-
     if (name.trim() === "" || feedback.trim() === "") {
 
         alert(
@@ -136,7 +245,6 @@ function submitFeedback() {
         return;
     }
 
-
     alert(
         "⭐ Thank you!\n\n" +
         "Your " + rating + "-star feedback for " +
@@ -144,13 +252,14 @@ function submitFeedback() {
         " has been submitted."
     );
 
-
     document.getElementById("feedback").value = "";
 
 }
 
 </script>
 
-</body>
+<script src="script.js"></script>
 
+</body>
 </html>
+
