@@ -94,3 +94,22 @@ function showNotification(message) {
 
 console.log("PeerNex is ready! 🚀");
 console.log("Developed by SYNORA");
+
+// Register PeerNex Service Worker
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(function (registration) {
+                console.log(
+                    "PeerNex PWA activated!",
+                    registration.scope
+                );
+            })
+            .catch(function (error) {
+                console.error(
+                    "PWA registration failed:",
+                    error
+                );
+            });
+    });
+}
